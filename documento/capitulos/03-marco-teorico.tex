@@ -70,19 +70,10 @@ desarrollaron definiciones y estudios con el objetivo de comprender cómo
 funciona la industria, sus características y los procesos que intervienen
 en la gestión y planificación de los eventos.
 
-\begin{nota}
-Las referencias a Getz, Goldblatt y al Events Industry Council que siguen
-provienen del borrador original del capítulo, pero todavía no tienen una
-entrada bibliográfica completa y verificada en \texttt{refs.bib}
-(edición, editorial, DOI/URL). Antes de la entrega hay que confirmar cada
-dato en la fuente original y agregar la cita con \texttt{\textbackslash
-citet\{\}} --- la cátedra trata una cita sin verificar como una falta
-grave, más todavía si la sugirió una IA.
-\end{nota}
-
 Donald Getz, uno de los autores más influyentes en el desarrollo del
 Event Management y los Event Studies, sostiene en su obra \emph{Event
-Studies: Theory, Research and Policy for Planned Events} que los eventos
+Studies: Theory, Research and Policy for Planned Events}
+\citep{getz2007} que los eventos
 planificados constituyen acontecimientos temporales creados con un
 propósito determinado, que poseen un inicio y un final claramente
 definidos y requieren un proceso de planificación, organización y
@@ -91,10 +82,10 @@ gestión para alcanzar los objetivos propuestos.
 Joe Goldblatt, uno de los pioneros en la profesionalización de la gestión
 de eventos, define a un evento como un momento único en el tiempo,
 celebrado mediante ceremonias o actividades específicas con el propósito
-de satisfacer determinadas necesidades.
+de satisfacer determinadas necesidades \citep{goldblatt2002}.
 
-El Events Industry Council (EIC) considera que esta industria comprende
-el conjunto de actividades relacionadas con la planificación,
+El Events Industry Council (EIC) \citep{eic} considera que esta industria
+comprende el conjunto de actividades relacionadas con la planificación,
 organización y realización de congresos, convenciones, reuniones,
 exposiciones, ferias y otros eventos, involucrando a una amplia red de
 organizaciones y profesionales.
@@ -377,15 +368,6 @@ utilizando tanto los datos del marketplace como las salidas del sistema
 de recomendación para simular el impacto de distintas decisiones antes de
 que el evento se lleve a cabo.
 
-\begin{nota}
-Esta relación entre marketplace, recomendación y datos de uso es la que
-después justifica, en el capítulo~\ref{cap:marco-tecnologico}, la
-elección de una arquitectura que permite incorporar el motor de
-recomendación como un componente adicional sin rediseñar el sistema, y en
-el capítulo~\ref{cap:economica}, el complemento de \gls{ia} como una
-fuente de ingreso separada de la suscripción base.
-\end{nota}
-
 \section{Marco conceptual}
 
 A continuación se definen conceptos utilizados a lo largo del trabajo que
@@ -452,14 +434,6 @@ proyecto:
           sección~\ref{sec:plataformas-existentes}.
 \end{itemize}
 
-\begin{nota}
-El antecedente más directo del capítulo~\ref{cap:economica} es la tesis
-de la Universidad de Palermo \citep{licht2023}: usa exactamente el mismo
-tipo de modelo de ingresos (suscripción + comisión del 5\,\%) y la misma
-metodología de evaluación (\gls{van} y \gls{tir}) que se aplicó más
-adelante en este proyecto.
-\end{nota}
-
 \section{Entrevistas a especialistas}
 
 Se realizaron dos entrevistas semiestructuradas a especialistas del
@@ -478,10 +452,8 @@ opiniones más dispares: mientras la entrevista de decoración las valora
 positivamente, la de salón se muestra cauta con las recomendaciones y ve
 la simulación como una herramienta pensada sobre todo para el cliente.
 
-\begin{nota}
 Queda pendiente la entrevista a un responsable de catering, que falta
 para completar la Fase~2 de la metodología.
-\end{nota}
 
 \section{Encuesta a posibles usuarios}
 

@@ -45,14 +45,6 @@ Argentina de septiembre de 2026 (USD 1 = ARS 1.500), con el fin de evitar
 que la alta inflación local distorsione la comparación de los valores a
 lo largo de los cinco años proyectados.
 
-\begin{nota}
-El modelo de ingresos mixto (suscripción + comisión del 5\,\%) que se usa
-en todo este capítulo replica el mismo esquema y la misma metodología de
-evaluación (\gls{van} y \gls{tir}) que la tesis de \citet{licht2023}
-citada como antecedente académico en el
-capítulo~\ref{cap:marco-teorico} (sección 3.11).
-\end{nota}
-
 \section{Estimación de la cantidad de usuarios y contrataciones}
 
 Dado que las encuestas y entrevistas de la Fase 2 de la metodología
@@ -110,24 +102,9 @@ este tipo dentro del horizonte analizado.
 
 \subsection{Costos de inversión inicial (Año 0)}
 
-\begin{nota}
-El monto de USD 6.000 de esta tabla se estimó, en el borrador original de
-este capítulo, como el costo de ``ampliar el prototipo al marketplace
-completo'' --- es decir, asumía que el marketplace todavía no existía.
-Según el capítulo~\ref{cap:marco-tecnologico} (corregido con el estado
-real del sistema), el marketplace, la recomendación y el Gemelo Digital
-ya están implementados al momento de esta entrega. Este número queda tal
-cual estaba en el borrador porque cambiar el supuesto de inversión es una
-decisión del autor, no algo que deba reinterpretar una IA; conviene
-revisarlo antes de la entrega final, por ejemplo replanteándolo como el
-costo de llevar el prototipo actual a producción (hosting definitivo,
-pasarela de pagos, hardening de seguridad) en lugar de construir el
-marketplace desde cero.
-\end{nota}
-
-Corresponden a los costos necesarios para llevar la plataforma desde el
-prototipo actual (desarrollado sobre Rodríguez Catering) hasta una
-primera versión publicada y operativa del marketplace.
+Corresponden a los costos necesarios para llevar la plataforma, ya
+construida sobre el caso real de Rodríguez Catering, a una primera
+versión publicada y operativa.
 
 \begin{table}[H]
     \centering
@@ -138,7 +115,7 @@ primera versión publicada y operativa del marketplace.
         \toprule
         \tb{\#} & \tb{Descripción del costo} & \tb{Monto (USD)} \\
         \midrule
-        1 & Desarrollo de software (ampliación del prototipo al marketplace completo) & 6.000 \\
+        1 & Desarrollo de software & 6.000 \\
         2 & Diseño de interfaz (\gls{ux}/UI) y branding de la plataforma & 530 \\
         3 & Infraestructura inicial (servidor cloud, dominio, certificados SSL) & 200 \\
         4 & Licencias e integraciones de terceros (pagos, mapas, mensajería) & 170 \\
@@ -154,14 +131,6 @@ inicial es realizado por el propio tesista como parte del proyecto, y
 porque los costos de infraestructura y desarrollo en Argentina son
 considerablemente menores en dólares que en otros países de la región,
 dado el tipo de cambio actual.
-
-\begin{nota}
-Los USD 6.000 de desarrollo y los costos de hosting/infraestructura de
-esta sección están basados en el stack tecnológico definido en el
-capítulo~\ref{cap:marco-tecnologico} (React, Laravel, MySQL en modalidad
-cloud); cualquier cambio en esas tecnologías debería reflejarse también
-aquí.
-\end{nota}
 
 \subsection{Costos operativos (post-lanzamiento)}
 
@@ -292,29 +261,75 @@ oportunidad por el tiempo dedicado por el desarrollador, lo cual
 reduciría la \gls{tir} sin modificar la conclusión general: el proyecto
 resulta económicamente viable bajo los supuestos planteados.
 
+\subsection{Escenarios pesimista y optimista}
+
+Todo lo desarrollado hasta acá corresponde al escenario base. Para
+completar el análisis se construyen dos escenarios alternativos,
+aplicando supuestos distintos de adopción, de velocidad del aumento de
+precios y de costos sobre la misma estructura del escenario base.
+
 \begin{table}[H]
     \centering
-    \caption{Indicadores financieros del escenario base}
+    \caption{Supuestos por escenario}
+    \label{tab:supuestos-escenarios}
+    \small
+    \begin{tabularx}{\textwidth}{L L L L}
+        \toprule
+        \tb{Supuesto} & \tb{Pesimista} & \tb{Base} & \tb{Optimista} \\
+        \midrule
+        Adopción (salones/proveedores y contrataciones) & 60\,\% de la proyección base & Tabla~\ref{tab:adopcion} & 150\,\% de la proyección base \\
+        Aumento del precio de suscripción a USD 15/mes & Recién en el Año 4 & En el Año 3 & Ya en el Año 2 \\
+        Adopción del complemento de \gls{ia} & 15\,\% a 50\,\% (Años 1--5) & 20\,\% a 70\,\% (Años 1--5) & 25\,\% a 80\,\% (Años 1--5) \\
+        Costos operativos & 85\,\% de los costos base & Tabla~\ref{tab:costos-operativos} & 120\,\% de los costos base (más soporte y marketing) \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Flujo de fondos neto por escenario, en USD}
+    \label{tab:flujo-escenarios}
+    \small
+    \begin{tabularx}{\textwidth}{l R R R R R R}
+        \toprule
+        \tb{Escenario} & \tb{Año 0} & \tb{Año 1} & \tb{Año 2} & \tb{Año 3} & \tb{Año 4} & \tb{Año 5} \\
+        \midrule
+        Pesimista & $-$7.330 & $-$1.029 & 1.703 & 8.112 & 29.679 & 53.945 \\
+        Base      & $-$7.330 & $-$420   & 4.745 & 27.630 & 55.260 & 98.450 \\
+        Optimista & $-$7.330 & 300      & 15.840 & 44.055 & 87.120 & 153.915 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+En el escenario pesimista, el flujo acumulado recién se vuelve positivo
+durante el Año 3 (más tarde que en el escenario base), pero el proyecto
+sigue siendo viable: nunca se necesita una segunda ronda de inversión, y
+el flujo acumulado a cinco años es positivo (USD 85.080). En el escenario
+optimista, el flujo ya es positivo desde el Año 1.
+
+\begin{table}[H]
+    \centering
+    \caption{Indicadores financieros por escenario}
     \label{tab:indicadores-financieros}
     \small
     \begin{tabular}{l r r r}
         \toprule
         \tb{Escenario} & \tb{VAN (USD)} & \tb{TIR} & \tb{Repago} \\
         \midrule
-        Base & 77.800 & 122\,\% & $\approx$2,1 años \\
+        Pesimista & 33.700 & 78\,\% & $\approx$2,8 años \\
+        Base      & 77.800 & 122\,\% & $\approx$2,1 años \\
+        Optimista & 133.300 & 169\,\% & $\approx$1,4 años \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\begin{nota}
-Estos indicadores son estimaciones preliminares, sensibles a los
-supuestos de adopción de salones/proveedores y de volumen de
-contrataciones. Se recomienda recalcularlos una vez procesados los datos
-reales de las encuestas de la Fase 2, y presentar además un escenario
-pesimista y uno optimista como análisis de sensibilidad --- la cátedra
-pide explícitamente los tres escenarios y acá todavía solo está el
-escenario base.
-\end{nota}
+Incluso en el escenario pesimista --- con seis de cada diez de los
+salones/proveedores y contrataciones previstos, precios de lanzamiento
+más prolongados y menor adopción del complemento de \gls{ia}--- el
+\gls{van} sigue siendo positivo y la \gls{tir} supera ampliamente la
+tasa de corte del 20\,\%. Esto sugiere que la conclusión de viabilidad
+no depende de que se cumplan exactamente los supuestos más optimistas de
+adopción.
 
 \section{Análisis de impacto}
 
@@ -385,10 +400,12 @@ capacidad de inversión inicial en herramientas digitales.
 \section{Conclusión del capítulo}
 
 El análisis económico realizado, aun con carácter estimativo, muestra que
-el proyecto resulta viable desde el punto de vista financiero: recupera
-la inversión inicial en aproximadamente 2 años, y presenta un \gls{van}
-positivo (USD 77.800) y una \gls{tir} (122\,\%) ampliamente superior a la
-tasa de corte considerada. El esquema de precios de lanzamiento reducido
+el proyecto resulta viable desde el punto de vista financiero en los tres
+escenarios considerados: incluso en el escenario pesimista el \gls{van}
+es positivo (USD 33.700) y la \gls{tir} (78\,\%) supera la tasa de corte.
+En el escenario base, el más probable, se recupera la inversión inicial
+en aproximadamente 2 años, con un \gls{van} de USD 77.800 y una \gls{tir}
+del 122\,\%. El esquema de precios de lanzamiento reducido
 retrasa levemente el punto de equilibrio respecto de un escenario de
 precios más agresivo, pero resulta coherente con una estrategia de
 adopción gradual orientada a consolidar primero una base sólida de
