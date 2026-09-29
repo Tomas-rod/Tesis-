@@ -93,32 +93,31 @@ tercero: hosting administrado, librería probada) y \textbf{aceptar}
 (convivir con él, documentado, con responsable y contingencia).
 \end{ejemplo}
 
-% La matriz va apaisada (landscape) porque tiene muchas columnas.
-% Columnas: l = ancho fijo, p{..} = ancho fijo con corte de línea,
-% L = ancho automático (se reparte el espacio restante).
-\begin{landscape}
-\footnotesize
-\renewcommand{\arraystretch}{0.95}
-\setlength{\tabcolsep}{4pt}
-\begin{xltabular}{\linewidth}{l L p{1.5cm} p{1.5cm} c c c L p{1.1cm} L}
+Todos los riesgos siguientes tienen como responsable al autor del
+proyecto, por tratarse de un equipo de una sola persona.
+
+\scriptsize
+\renewcommand{\arraystretch}{0.9}
+\setlength{\tabcolsep}{3pt}
+\begin{xltabular}{\textwidth}{l X p{1.3cm} p{1.3cm} c c c X X}
     \caption{Matriz de riesgos ordenada por exposición}
     \label{tab:matriz-riesgos} \\
     \toprule
-    \tb{ID} & \tb{Descripción (causa, evento, efecto)} & \tb{Naturaleza} & \tb{Etapa} & \tb{P} & \tb{I} & \tb{E} & \tb{Respuesta} & \tb{Resp.} & \tb{Contingencia} \\
+    \tb{ID} & \tb{Descripción (causa, evento, efecto)} & \tb{Naturaleza} & \tb{Etapa} & \tb{P} & \tb{I} & \tb{E} & \tb{Respuesta} & \tb{Contingencia} \\
     \midrule
     \endfirsthead
     \toprule
-    \tb{ID} & \tb{Descripción (causa, evento, efecto)} & \tb{Naturaleza} & \tb{Etapa} & \tb{P} & \tb{I} & \tb{E} & \tb{Respuesta} & \tb{Resp.} & \tb{Contingencia} \\
+    \tb{ID} & \tb{Descripción (causa, evento, efecto)} & \tb{Naturaleza} & \tb{Etapa} & \tb{P} & \tb{I} & \tb{E} & \tb{Respuesta} & \tb{Contingencia} \\
     \midrule
     \endhead
     \bottomrule
     \endfoot
-    R-01 & Debido a que las encuestas y entrevistas de la Fase~2 todavía están en curso, podría ocurrir que se sigan sumando funcionalidades (pagos, app móvil) hasta último momento, lo que provocaría que el alcance no cierre antes del 17/11. & Alcance & Durante & 4 & 5 & \riesgoAlto{20} & Mitigar: congelar el alcance en el hito ``sistema congelado'' (3/11) y dejar pagos y despliegue documentados como trabajo futuro & Autor & Recortar a los \gls{rf} ya implementados y priorizar el documento integrado \\
-    R-02 & Debido a que el sistema corre hoy solo en el entorno local de desarrollo y todavía no se eligió proveedor de hosting, podría ocurrir que el despliegue se resuelva a último momento, lo que provocaría fallas durante la demo de la defensa. & Técnico & Pasaje a producción & 3 & 5 & \riesgoAlto{15} & Mitigar: elegir hosting antes del 3/11, ambiente de respaldo y video de la demo grabado con antelación & Autor & Mostrar el video y el ambiente local si falla la red del aula \\
-    R-03 & Debido a que la plataforma fue desarrollada por una sola persona sin documentación pensada para un tercero, podría ocurrir que nadie quede a cargo del mantenimiento una vez recibido el tesista, lo que provocaría que el sistema quede sin soporte ni actualizaciones de seguridad. & Recursos & Operación & 3 & 4 & \riesgoAlto{12} & Mitigar: documentar arquitectura (capítulo~\ref{cap:marco-tecnologico}) y código pensando en un traspaso, y decidir explícitamente si el proyecto continúa tras la defensa & Autor & Publicar el repositorio con licencia abierta para que un tercero pueda continuarlo \\
-    R-04 & Debido a que todavía no se eligió la pasarela de pagos (Mercado Pago o Stripe test mode), podría ocurrir que el marketplace llegue a la entrega final sin cobros integrados, lo que provocaría que las contrataciones deban confirmarse y cobrarse manualmente fuera de la plataforma. & Terceros & Antes de arrancar & 5 & 2 & \riesgoMedio{10} & Aceptar: para el piloto en Buenos Aires y el Gran Buenos Aires, confirmar y cobrar manualmente --- como ya se hace hoy--- no bloquea la validación del marketplace, la recomendación ni el Gemelo Digital & Autor & Documentar el flujo manual en el README y evaluar la pasarela recién con usuarios reales \\
-    R-05 & Debido a que la plataforma administrará datos personales de clientes, salones y proveedores, podría ocurrir un incumplimiento de la Ley 25.326 de Protección de Datos Personales, lo que provocaría sanciones o pérdida de confianza de los usuarios. & Datos y cumplimiento & Operación & 2 & 5 & \riesgoMedio{10} & Mitigar: política de privacidad explícita, credenciales cifradas (ya implementado con Sanctum) y acceso a datos limitado según el rol & Autor & Suspender la funcionalidad afectada hasta corregir el incumplimiento \\
-    R-06 & Debido a que el motor de recomendación se basa en reglas ponderadas y todavía no hay historial de uso real para entrenar un modelo, podría ocurrir que las primeras recomendaciones sean poco precisas, lo que provocaría baja confianza de los primeros usuarios en esa funcionalidad. & Técnico & Durante & 3 & 3 & \riesgoMedio{9} & Mitigar: comunicar que es una primera versión y ajustar los pesos de las reglas con el feedback de los primeros pilotos & Autor & Volver temporalmente a un orden simple (por reseñas) si el puntaje confunde más de lo que ayuda \\
-    R-07 & Debido a que el hosting se cotiza en dólares y los ingresos de suscripción se cobran en un contexto de alta inflación en pesos (capítulo~\ref{cap:economica}), podría ocurrir que el margen se reduzca más rápido de lo proyectado, lo que provocaría la necesidad de ajustar precios antes de lo previsto. & Recursos (externo) & Operación & 3 & 2 & \riesgoMedio{6} & Transferir/mitigar: revisar trimestralmente el tipo de cambio y ajustar el precio de suscripción según el modelo del capítulo~\ref{cap:economica} & Autor & Subir el precio de suscripción anticipadamente si el margen se erosiona \\
+    R-01 & Debido a que las encuestas y entrevistas de la Fase~2 todavía están en curso, podría ocurrir que se sigan sumando funcionalidades (pagos, app móvil) hasta último momento, lo que provocaría que el alcance no cierre antes del 17/11. & Alcance & Durante & 4 & 5 & \riesgoAlto{20} & Mitigar: congelar el alcance en el hito ``sistema congelado'' (3/11) y dejar pagos y despliegue documentados como trabajo futuro & Recortar a los \gls{rf} ya implementados y priorizar el documento integrado \\
+    R-02 & Debido a que el sistema corre hoy solo en el entorno local de desarrollo y todavía no se eligió proveedor de hosting, podría ocurrir que el despliegue se resuelva a último momento, lo que provocaría fallas durante la demo de la defensa. & Técnico & Pasaje a producción & 3 & 5 & \riesgoAlto{15} & Mitigar: elegir hosting antes del 3/11, ambiente de respaldo y video de la demo grabado con antelación & Mostrar el video y el ambiente local si falla la red del aula \\
+    R-03 & Debido a que la plataforma fue desarrollada por una sola persona sin documentación pensada para un tercero, podría ocurrir que nadie quede a cargo del mantenimiento una vez recibido el tesista, lo que provocaría que el sistema quede sin soporte ni actualizaciones de seguridad. & Recursos & Operación & 3 & 4 & \riesgoAlto{12} & Mitigar: documentar arquitectura (capítulo~\ref{cap:marco-tecnologico}) y código pensando en un traspaso, y decidir explícitamente si el proyecto continúa tras la defensa & Publicar el repositorio con licencia abierta para que un tercero pueda continuarlo \\
+    R-04 & Debido a que todavía no se eligió la pasarela de pagos (Mercado Pago o Stripe test mode), podría ocurrir que el marketplace llegue a la entrega final sin cobros integrados, lo que provocaría que las contrataciones deban confirmarse y cobrarse manualmente fuera de la plataforma. & Terceros & Antes de arrancar & 5 & 2 & \riesgoMedio{10} & Aceptar: para el piloto en Buenos Aires y el Gran Buenos Aires, confirmar y cobrar manualmente --- como ya se hace hoy--- no bloquea la validación del marketplace, la recomendación ni el Gemelo Digital & Documentar el flujo manual en el README y evaluar la pasarela recién con usuarios reales \\
+    R-05 & Debido a que la plataforma administrará datos personales de clientes, salones y proveedores, podría ocurrir un incumplimiento de la Ley 25.326 de Protección de Datos Personales, lo que provocaría sanciones o pérdida de confianza de los usuarios. & Datos y cumplimiento & Operación & 2 & 5 & \riesgoMedio{10} & Mitigar: política de privacidad explícita, credenciales cifradas (ya implementado con Sanctum) y acceso a datos limitado según el rol & Suspender la funcionalidad afectada hasta corregir el incumplimiento \\
+    R-06 & Debido a que el motor de recomendación se basa en reglas ponderadas y todavía no hay historial de uso real para entrenar un modelo, podría ocurrir que las primeras recomendaciones sean poco precisas, lo que provocaría baja confianza de los primeros usuarios en esa funcionalidad. & Técnico & Durante & 3 & 3 & \riesgoMedio{9} & Mitigar: comunicar que es una primera versión y ajustar los pesos de las reglas con el feedback de los primeros pilotos & Volver temporalmente a un orden simple (por reseñas) si el puntaje confunde más de lo que ayuda \\
+    R-07 & Debido a que el hosting se cotiza en dólares y los ingresos de suscripción se cobran en un contexto de alta inflación en pesos (capítulo~\ref{cap:economica}), podría ocurrir que el margen se reduzca más rápido de lo proyectado, lo que provocaría la necesidad de ajustar precios antes de lo previsto. & Recursos (externo) & Operación & 3 & 2 & \riesgoMedio{6} & Transferir/mitigar: revisar trimestralmente el tipo de cambio y ajustar el precio de suscripción según el modelo del capítulo~\ref{cap:economica} & Subir el precio de suscripción anticipadamente si el margen se erosiona \\
 \end{xltabular}
-\end{landscape}
+\normalsize
