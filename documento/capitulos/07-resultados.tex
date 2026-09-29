@@ -1,0 +1,188 @@
+%!TEX root = ../main.tex
+% =============================================================
+%  CAPÍTULO 7 — PRESENTACIÓN DE RESULTADOS
+%                                       (Entrega 7 · 5 % · 13/10)
+% =============================================================
+
+\chapter{Presentación de resultados}\label{cap:resultados}
+
+\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
+\begin{enumerate}
+    \item \textbf{Requerimientos formales}: \gls{rf} y \gls{rnf} con ID,
+          descripción, prioridad y criterio de aceptación medible,
+          trazados a los indicadores del capítulo~\ref{cap:metodologia}.
+    \item \textbf{Evidencia de implementación}: capturas reales del sistema
+          funcionando, enlaces al repositorio (anexo~\ref{anx:repositorios})
+          y al despliegue.
+    \item \textbf{Resultados cuantitativos honestos}: diseño experimental,
+          métricas, matrices de confusión o su equivalente en el dominio,
+          incluyendo lo que salió mal y su análisis. Reportar también lo
+          malo y argumentarlo vale más que esconderlo. Hiperparámetros y
+          versiones en el apéndice~\ref{apx:tecnicos}.
+    \item \textbf{Validación con usuarios y expertos}: idealmente
+          triangulada (métricas técnicas, encuesta, entrevista) y
+          traducida a decisiones de diseño concretas. Instrumentos en los
+          apéndices \ref{apx:encuesta} y \ref{apx:entrevista}.
+\end{enumerate}
+El sistema tiene que existir y andar: la entrega final incluye el
+proyecto funcional.
+\end{guia}
+
+Este capítulo presenta los resultados obtenidos hasta el momento sobre el
+prototipo descripto en el capítulo~\ref{cap:marco-tecnologico}: los
+requerimientos definidos, la evidencia de que el sistema funciona, los
+resultados de las pruebas automatizadas y la traducción de las
+entrevistas y la encuesta en decisiones de diseño concretas.
+
+\section{Requerimientos}
+
+\begin{table}[H]
+    \centering
+    \caption{Requerimientos funcionales}
+    \label{tab:rf}
+    \small
+    \begin{tabularx}{\textwidth}{l L L l L}
+        \toprule
+        \tb{ID} & \tb{Nombre} & \tb{Descripción} & \tb{Prioridad} & \tb{Criterio de aceptación} \\
+        \midrule
+        RF-01 & Autenticación por rol & El sistema permite iniciar sesión con Laravel Sanctum y asigna permisos según el rol (cliente, salón, proveedor, admin) & Alta & Un usuario sin token recibe 401 al acceder a una ruta protegida; cada rol solo ve las rutas que le corresponden \\
+        RF-02 & Búsqueda pública en el marketplace & Cualquier visitante, sin iniciar sesión, puede buscar salones y proveedores y ver su disponibilidad & Alta & La búsqueda y la ficha de un salón responden sin requerir autenticación \\
+        RF-03 & Solicitud de contratación & Un cliente autenticado puede solicitar un salón o proveedor, generando el evento y la reserva correspondiente & Alta & La solicitud es rechazada sin login; con login, crea evento y reserva; reutiliza el evento si el cliente ya tiene uno propio \\
+        RF-04 & Recomendación de salones y proveedores & El sistema sugiere salones y proveedores según presupuesto, capacidad/ubicación y reseñas del evento del cliente & Alta & Un tenant ocupado esa fecha no aparece recomendado; uno dentro de presupuesto y capacidad puntúa más alto \\
+        RF-05 & Simulación del Gemelo Digital & Un cliente puede simular cambios de invitados, fecha o presupuesto sobre su propio evento sin alterarlo, y aplicar la simulación si decide confirmarla & Alta & Un cliente no puede simular ni aplicar sobre el evento de otro; aplicar actualiza el evento real y no se puede repetir la misma simulación \\
+        RF-06 & Gestión de reservas por tenant & Cada salón o proveedor administra únicamente sus propias reservas recibidas & Media & Un tenant no puede ver ni gestionar reservas de otro tenant \\
+        RF-07 & Reseñas & Un cliente puede reseñar una reserva completada una sola vez, y esa reseña impacta en el puntaje de recomendación del tenant & Media & Se rechaza reseñar una reserva no completada o reseñarla dos veces \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Requerimientos no funcionales}
+    \label{tab:rnf}
+    \small
+    \begin{tabularx}{\textwidth}{l L L l L}
+        \toprule
+        \tb{ID} & \tb{Atributo} & \tb{Descripción} & \tb{Prioridad} & \tb{Umbral medible} \\
+        \midrule
+        RNF-01 & Seguridad de acceso & Los datos de un cliente, salón o proveedor no deben quedar expuestos a otros tenants ni a otros clientes & Alta & 0 casos donde un usuario acceda a datos ajenos en la suite de pruebas (verificado, sección~\ref{sec:pruebas}) \\
+        RNF-02 & Explicabilidad de la recomendación & Cada recomendación debe venir acompañada de un motivo legible & Media & 100\,\% de las recomendaciones devuelven un campo \texttt{motivo} no vacío \\
+        RNF-03 & Rendimiento & Tiempo de respuesta de las consultas principales & Media & Todavía no medido con carga real; pendiente para cuando haya despliegue (capítulo~\ref{cap:riesgos}, R-02) \\
+        RNF-04 & Usabilidad & Facilidad de uso percibida por los tres tipos de usuario & Alta & Validada de forma exploratoria por encuesta y entrevistas (sección~\ref{sec:validacion}); falta prueba de usabilidad guiada sobre el prototipo \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Evidencia de implementación}
+
+El código fuente completo está en el repositorio del sistema (ver
+anexo~\ref{anx:repositorios}). \completar{Agregar capturas reales de las
+pantallas principales: búsqueda del marketplace, ficha de un salón,
+recomendaciones, simulador del Gemelo Digital y panel del tenant.}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\parbox{0.85\textwidth}{\centering\vspace{2em}
+    \completar{Captura de pantalla: resultado de una búsqueda en el
+    marketplace, con salones filtrados por disponibilidad.}
+    \vspace{2em}}}
+    \caption{Captura del sistema en funcionamiento}
+    \label{fig:captura}
+\end{figure}
+
+\section{Resultados de las pruebas}\label{sec:pruebas}
+
+A diferencia de un modelo de \gls{ml} entrenado, el motor de
+recomendación es un conjunto de reglas
+ponderadas, por lo que no corresponde reportar métricas como precisión o
+$F_1$ sobre un conjunto de prueba: no hay ``predicción correcta o
+incorrecta'' que evaluar, sino reglas de negocio que se verifican con
+pruebas automatizadas de comportamiento. Lo mismo aplica al Gemelo
+Digital.
+
+Se ejecutó la suite de pruebas de integración
+(\texttt{php artisan test}) sobre los cuatro módulos nuevos:
+
+\begin{table}[H]
+    \centering
+    \caption{Resultado de la suite de pruebas automatizadas}
+    \label{tab:tests}
+    \small
+    \begin{tabular}{l r r}
+        \toprule
+        \tb{Módulo} & \tb{Pruebas} & \tb{Resultado} \\
+        \midrule
+        Autenticación y roles (\texttt{AuthTest}) & 8 & 8 aprobadas \\
+        Marketplace (\texttt{MarketplaceTest}) & 9 & 9 aprobadas \\
+        Motor de recomendación (\texttt{RecomendacionTest}) & 8 & 8 aprobadas \\
+        Gemelo Digital (\texttt{GemeloDigitalTest}) & 9 & 9 aprobadas \\
+        \midrule
+        \tb{Total} & \tb{34} & \tb{34 aprobadas (63 aserciones)} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Estas pruebas verifican, entre otras cosas, que un cliente no pueda
+solicitar, simular ni reseñar sobre un evento ajeno, que un tenant
+ocupado en la fecha del evento no aparezca recomendado, que el costo del
+catering se reescale correctamente en la simulación, y que el aviso de
+capacidad excedida del salón se dispare cuando corresponde. Que la suite
+pase no significa que el sistema no tenga errores: cubre los casos que
+se pensaron al escribirla, no garantiza haber pensado todos los casos
+posibles.
+
+\begin{nota}
+Lo que todavía no está probado, y queda pendiente: pruebas de carga o
+concurrencia (RNF-03), pruebas de usabilidad guiada con usuarios reales
+sobre el prototipo (más allá de la encuesta y las entrevistas), y
+pruebas end-to-end del flujo completo de pagos, ya que esa
+funcionalidad todavía no está integrada.
+\end{nota}
+
+\section{Validación con usuarios y expertos}\label{sec:validacion}
+
+Los resultados se triangularon con la encuesta a 45 potenciales usuarios
+y las dos entrevistas a especialistas del sector, ya presentadas en el
+capítulo~\ref{cap:marco-teorico}. La tabla siguiente traduce los
+hallazgos más relevantes de esa validación en decisiones concretas sobre
+el sistema.
+
+\begin{table}[H]
+    \centering
+    \caption{Traducción de la retroalimentación en decisiones de diseño}
+    \label{tab:feedback-decisiones}
+    \small
+    \begin{tabularx}{\textwidth}{L L L l}
+        \toprule
+        \tb{Fuente} & \tb{Hallazgo} & \tb{Decisión} & \tb{Estado} \\
+        \midrule
+        Encuesta (n=45) & 97,8\,\% valoró útil poder simular el evento antes de confirmarlo & Priorizar el Gemelo Digital como funcionalidad central, no como agregado & Implementado \\
+        Encuesta (n=45) & 93,3\,\% valoró útil la recomendación automática de proveedores & Diseñar el motor de recomendación con motivo explicable desde la primera versión (RNF-02) & Implementado \\
+        Encuesta (n=45) & Solo 2,2\,\% usa hoy un marketplace existente para organizar su evento & Reforzar en el capítulo~\ref{cap:marco-teorico} que la brecha de adopción, no la falta de plataformas, es la oportunidad del proyecto & Incorporado al análisis \\
+        Entrevista, dueño de salón & Los pagos son la información más difícil de mantener actualizada & Diseñar el modelo de reservas con estado y monto desde el inicio, aunque el cobro todavía se gestione manualmente (capítulo~\ref{cap:riesgos}, R-04) & Parcial \\
+        Entrevista, decoración & Sería útil un plano a escala del salón para planificar la ambientación & Evaluar para una futura versión del marketplace (no forma parte del alcance actual) & Pendiente \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Resultados honestos: lo que funcionó y lo que no}
+
+Funcionaron según lo previsto: la separación de datos por tenant (ningún
+usuario accedió a datos ajenos en las pruebas), el filtro de
+disponibilidad por fecha en la recomendación y en el marketplace, y la
+capacidad del Gemelo Digital de detectar tanto el exceso de capacidad del
+salón como el conflicto de fecha entre tenants ya confirmados.
+
+No salió como se esperaba, o todavía no se puso a prueba:
+
+\begin{itemize}
+    \item El motor de recomendación todavía no se validó con usuarios
+          reales interactuando con resultados reales, solo con las
+          pruebas automatizadas de comportamiento; su precisión
+          percibida por un usuario final es, por ahora, una incógnita.
+    \item Las pruebas de rendimiento (RNF-03) no se hicieron porque
+          todavía no hay un entorno de producción para medir con carga
+          real.
+    \item La entrevista a un responsable de catering, prevista en la
+          Fase~2 de la metodología, sigue pendiente.
+\end{itemize}

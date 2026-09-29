@@ -1,0 +1,399 @@
+%!TEX root = ../main.tex
+% =============================================================
+%  CAPÍTULO 2 — METODOLOGÍA             (Entrega 2 · 5 % · 5/5)
+% =============================================================
+
+\chapter{Metodología y procedimientos}\label{cap:metodologia}
+
+\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
+La cátedra exige \textbf{dos metodologías}. El error más común es
+entregar solo una.
+\begin{enumerate}
+    \item \textbf{Metodología de la investigación}: área temática,
+          planteamiento y delimitación del problema, marco teórico
+          previsto, diseño concreto (fases), indicadores medibles con
+          fuente y umbral, técnicas de recolección, instrumentos, datos,
+          procesamiento, análisis crítico y síntesis. Tipo de
+          investigación: en general, aplicada.
+    \item \textbf{Metodología de dirección del proyecto}: marco de trabajo
+          justificado, alcance y entregables, cronograma con fechas reales
+          (Gantt con hitos que coinciden con las entregas), costos, riesgos
+          (referencia al capítulo~\ref{cap:riesgos}), calidad, recursos y
+          satisfacción de las partes interesadas.
+    \item \textbf{Declaración de uso de IA}: qué tareas fueron asistidas y
+          cómo se verificaron. Los prompts se guardan en una carpeta
+          compartida con la cátedra.
+\end{enumerate}
+Extensión orientativa: 6 a 10 páginas. Referencias habituales:
+\citet{hernandezsampieri2014} para investigación y \citet{pmi2021}
+para gestión.
+\end{guia}
+
+\section{Área temática}
+
+Este proyecto se desarrolla en el ámbito de soluciones de software
+inteligentes aplicadas a la gestión integral de los eventos, con el
+objetivo de entender las dificultades que existen al momento de
+planificar y coordinar un evento, para así analizar de qué manera las
+tecnologías de hoy en día pueden simplificar el proceso.
+
+Por este motivo, el proyecto integra conceptos relacionados con
+marketplaces digitales, sistemas de gestión comercial y operativa,
+sistemas de recomendación con el uso de la \gls{ia} y Gemelos Digitales
+para la simulación de escenarios.
+
+\section{Planteamiento del problema}
+
+Para organizar un evento social o empresarial hay que coordinar muchos
+servicios, como proveedores del lugar, catering, fotografía, decoración,
+ambiente, entretenimiento, proveedores de sonido e iluminación, además de
+algunos adicionales que se requieren.
+
+Hasta ahora, este tipo de servicios generalmente se contrataban por
+separado a través de redes sociales, plataformas de mensajería, sitios web
+y recomendaciones de boca en boca. Esto provoca que la información se
+disperse por internet, y que los usuarios necesiten pasar mucho tiempo
+buscando qué proveedores existen o comparando opciones y disponibilidad,
+además de tomar decisiones en situaciones en las que disponen de datos
+limitados.
+
+Sin embargo, muchos usuarios contratan a un organizador de eventos que
+actúa como nexo entre los distintos proveedores, agrega información y
+trabaja con ellos en la planificación del evento. Aunque este enfoque
+facilita la organización, conlleva gastos adicionales y obliga a depender
+de plataformas de terceros.
+
+Del mismo modo, los recintos y proveedores gestionan sus reservas,
+presupuestos, pagos y disponibilidad mediante sistemas independientes o
+procesos manuales, dejando pocas posibilidades de que todos los
+participantes de un evento interactúen entre sí.
+
+Esto lleva a explorar si un marketplace de servicios, junto con
+herramientas de gestión y herramientas inteligentes de emparejamiento y
+simulación, mejora la organización de eventos en general o ayuda en la
+toma de decisiones.
+
+\section{Delimitación de la investigación}
+
+Este proyecto está enfocado en el desarrollo de una plataforma web y móvil
+orientada a la organización de eventos sociales y empresariales.
+
+La investigación está enfocada a personas que ya hayan organizado algún
+tipo de evento, a los proveedores de productos y servicios relacionados
+con la industria y a los propietarios de los salones, ya que son ellos
+los que presentan las dificultades de llevar a cabo la organización y
+planificación del evento.
+
+La propuesta está delimitada a un estudio y desarrollo de un marketplace
+de servicios, herramientas de gestión comercial y operativas, y
+funcionalidades inteligentes de simulación con Gemelos Digitales y
+recomendación de productos mediante \gls{ia}.
+
+\section{Marco teórico previsto}
+
+\begin{description}
+    \item[Marketplaces digitales.] Se estudia el funcionamiento de los
+          marketplaces digitales, desde sus funcionalidades hasta cómo
+          permiten conectar al usuario con los proveedores, buscando
+          encontrar las ventajas y limitaciones de las plataformas.
+    \item[Sistemas de gestión comercial y operativa.] Se investigan los
+          sistemas de gestión utilizados por los salones de fiestas,
+          buscando cómo llevan a cabo los procesos de reserva, presupuesto,
+          pagos, clientes y disponibilidad de recursos.
+    \item[Sistemas de recomendación.] Se investigan los conceptos
+          relacionados con la \gls{ia} y las tecnologías que permiten
+          procesar información e identificar patrones que ayudan al
+          usuario en la toma de decisiones, enfocándose en cómo estas
+          herramientas pueden incorporarse dentro de una plataforma.
+    \item[Inteligencia artificial.] Se estudian los conceptos relacionados
+          con \gls{ia} y las tecnologías que permiten procesar información
+          e identificar patrones para asistir en la toma de decisiones,
+          analizando cómo pueden incorporarse funcionalidades inteligentes
+          dentro de la plataforma propuesta.
+    \item[\glspl{g:gemelo-digital}.] Se investiga el concepto de Gemelo
+          Digital y sus aplicaciones actuales en diferentes industrias,
+          con el objetivo de analizar la posibilidad de representar
+          virtualmente un evento y simular diferentes escenarios antes de
+          su realización.
+    \item[Gestión integral de eventos.] Se estudian los procesos
+          involucrados en la organización de eventos sociales y
+          empresariales, incluyendo la contratación de proveedores, la
+          coordinación de servicios, la administración de recursos y la
+          planificación de actividades.
+\end{description}
+
+\section{Diseño de investigación}
+
+Se define un tipo de investigación aplicada, desarrollada en cinco fases
+sucesivas.
+
+\subsection{Fase 1: Investigación y análisis de la industria}
+
+Se realiza un relevamiento de la industria con el fin de comprender cómo
+se organizan actualmente los eventos tanto sociales como empresariales, y
+de qué manera las personas acceden a la contratación de productos y
+servicios. Además, se analizan las diferentes plataformas existentes
+relacionadas con la organización de eventos, tales como WeddingWire, The
+Knot, Eventbrite, Cvent, Eventtia y Planning Pod, con el propósito de
+identificar sus principales funcionalidades, limitaciones y oportunidades
+de mejora.
+
+\subsection{Fase 2: Relevamiento de requerimientos}
+
+Para relevar los procesos actuales de organización y gestión de eventos,
+identificar las principales dificultades y conocer las necesidades de
+cada usuario, se realizan encuestas y entrevistas semiestructuradas
+dirigidas a tres grupos principales: personas que hayan organizado
+eventos, propietarios o responsables de salones y proveedores de
+servicios. La información obtenida permite definir los requerimientos
+funcionales y no funcionales del sistema.
+
+\subsection{Fase 3: Definición y diseño de la solución}
+
+Con los relevamientos se define cómo está compuesta la plataforma,
+quiénes son los usuarios que participan en ella y de qué manera se
+relacionan entre sí los clientes, los salones y los proveedores. Se
+determina cómo funciona el marketplace y qué herramientas son necesarias
+para administrar reservas, presupuestos y contrataciones, y se define la
+incorporación de recomendaciones inteligentes y del Gemelo Digital.
+
+\subsection{Fase 4: Desarrollo del prototipo funcional}
+
+Se desarrolla una primera versión funcional de la plataforma web y móvil,
+incorporando las principales funcionalidades definidas en las fases
+anteriores, incluyendo el marketplace, las herramientas de gestión para
+salones y proveedores, y las funcionalidades inteligentes de
+recomendación y simulación.
+
+\subsection{Fase 5: Validación funcional y análisis de resultados}
+
+Se realizan pruebas con usuarios de los tres grupos involucrados en la
+investigación, comparando los datos obtenidos con la información relevada
+en la Fase 2, para determinar si la propuesta logra resolver o simplificar
+la problemática identificada.
+
+\section{Instrumentos de recolección de datos}
+
+Para obtener la información necesaria se utilizan distintos instrumentos
+según las características de cada grupo. Para las personas que hayan
+organizado eventos, propietarios de salones y proveedores, se utilizan
+formularios de encuestas desarrollados mediante herramientas digitales,
+principalmente Google Forms. Además, se realizan comparaciones entre las
+distintas plataformas y herramientas que existen actualmente en la
+industria, permitiendo identificar oportunidades de mejora y aspectos
+diferenciales (apéndice~\ref{apx:encuesta}).
+
+\section{Procesamiento de los datos}
+
+Una vez recolectada la información, los datos se organizan y separan
+según el tipo de participante (clientes, salones y proveedores), y se
+registran en planillas y tablas que permiten ordenar las respuestas,
+identificar dificultades comunes y definir las funcionalidades más
+importantes a incorporar en la plataforma.
+
+\section{Análisis de los datos}
+
+Los datos obtenidos se analizan mediante tablas, gráficos y estadísticas
+descriptivas. La información de las entrevistas se analiza de forma
+cualitativa, con el propósito de comprender las problemáticas actuales,
+identificar necesidades de gestión y detectar oportunidades de mejora
+para el diseño de la plataforma (apéndice~\ref{apx:entrevista}).
+
+\section{Síntesis y conclusiones}
+
+Se realiza una síntesis de la información obtenida durante la
+investigación, analizando el nivel de interés de clientes, salones y
+proveedores en el proyecto, y definiendo las funcionalidades que debe
+incorporar la plataforma para responder de manera más eficiente a las
+necesidades actuales de la industria de eventos.
+
+\section{Declaración de uso de \acrshort{ia}}
+
+\completar{Qué tareas del capítulo fueron asistidas por herramientas de
+\gls{ia} y cómo se verificó cada resultado (ver
+declaración completa en el preliminar correspondiente).}
+
+\section{Metodología de dirección del proyecto}
+
+\subsection{Alcance}
+
+El proyecto incluye el análisis, diseño, desarrollo y validación
+funcional de una plataforma web y móvil orientada a la organización
+integral de eventos sociales y empresariales. La solución contempla un
+marketplace para buscar, comparar y contratar servicios (salones,
+catering, fotografía, decoración, ambientación, entretenimiento y otros
+proveedores), herramientas de gestión para salones y proveedores, y
+funcionalidades inteligentes de recomendación y Gemelo Digital para
+simular distintos escenarios antes de la realización del evento.
+
+\subsection{Cronograma}
+
+Los tiempos indicados representan una estimación inicial y se ajustan
+según el avance de la investigación y el desarrollo del proyecto. Se
+estima una duración total de aproximadamente diez meses, organizada en
+cinco etapas:
+
+\begin{itemize}
+    \item \textbf{Etapa 1 — Investigación y relevamiento (junio)}: estudio
+          del estado del arte, investigación de plataformas existentes y
+          relevamiento mediante encuestas y entrevistas a clientes,
+          salones y proveedores.
+    \item \textbf{Etapa 2 — Análisis y diseño de la solución
+          (julio-agosto)}: definición de requerimientos funcionales y no
+          funcionales, arquitectura general del sistema, modelo de datos
+          y diseño conceptual del marketplace, las herramientas de
+          gestión y el Gemelo Digital.
+    \item \textbf{Etapa 3 — Desarrollo de la plataforma
+          (agosto-septiembre)}: desarrollo del marketplace de servicios,
+          las herramientas de administración y las funcionalidades
+          inteligentes de recomendación y simulación.
+    \item \textbf{Etapa 4 — Validación funcional y pruebas
+          (octubre-noviembre)}: pruebas funcionales y evaluaciones con
+          usuarios representativos, identificando mejoras y ajustes
+          necesarios.
+    \item \textbf{Etapa 5 — Documentación y cierre (diciembre)}:
+          elaboración de la documentación final, análisis de resultados y
+          preparación de la presentación final.
+\end{itemize}
+
+Este cronograma de etapas de investigación se complementa con el
+calendario oficial de entregas de la cátedra (figura~\ref{fig:gantt}),
+que fija las fechas concretas de cada capítulo.
+
+\begin{figure}[H]
+    \centering
+    \begin{ganttchart}[
+        hgrid, vgrid={*{6}{draw=none}, dotted},
+        x unit=0.42mm,
+        y unit chart=6mm, y unit title=7mm,
+        time slot format=isodate,
+        bar label font=\small, milestone label font=\small,
+        title label font=\small,
+        bar/.append style={fill=mainColor!60, draw=none},
+        milestone/.append style={fill=mainColor, draw=none},
+    ]{2026-03-16}{2026-11-20}
+        \gantttitlecalendar{month=shortname} \\
+        \ganttbar{Idea y resumen}{2026-03-16}{2026-04-10} \\
+        \ganttbar{Metodología}{2026-04-06}{2026-05-05} \\
+        \ganttbar{Introducción}{2026-05-06}{2026-06-09} \\
+        \ganttbar{Marco teórico}{2026-06-01}{2026-07-28} \\
+        \ganttbar{Marco tecnológico}{2026-07-01}{2026-08-25} \\
+        \ganttbar{Justif. económica}{2026-08-10}{2026-09-15} \\
+        \ganttbar{Riesgos}{2026-09-01}{2026-09-29} \\
+        \ganttbar{Desarrollo del sistema}{2026-06-15}{2026-10-10} \\
+        \ganttbar{Resultados}{2026-09-20}{2026-10-13} \\
+        \ganttbar{Conclusiones}{2026-10-05}{2026-10-20} \\
+        \ganttbar{Integración y revisión}{2026-10-21}{2026-11-16} \\
+        \ganttmilestone{Entrega final}{2026-11-17}
+    \end{ganttchart}
+    \caption{Cronograma del proyecto (ciclo lectivo 2026)}
+    \label{fig:gantt}
+\end{figure}
+
+\subsection{Costos del proyecto}
+
+Esta sección corresponde a los costos de llevar adelante el proyecto de
+tesis en sí --- no a la factibilidad económica del negocio una vez
+lanzada la plataforma---: el tiempo, las herramientas y los eventuales
+recursos necesarios para investigar, diseñar y desarrollar el prototipo
+dentro del plazo académico.
+
+\begin{table}[H]
+    \centering
+    \caption{Costos del proyecto de tesis (estimado)}
+    \label{tab:costos-tesis}
+    \small
+    \begin{tabularx}{\textwidth}{L L L}
+        \toprule
+        \tb{Concepto} & \tb{Descripción} & \tb{Costo estimado} \\
+        \midrule
+        Tiempo del alumno & Dedicación estimada del tesista durante los 10 meses del proyecto (no representa un desembolso, pero es el principal recurso invertido) & Sin costo monetario directo \\
+        Herramientas de desarrollo & Editor de código, control de versiones (Git/GitHub en su plan gratuito), entornos de desarrollo local & USD 0 (herramientas gratuitas) \\
+        Encuestas y formularios & Google Forms para las encuestas de la Fase 2 & USD 0 (plan gratuito) \\
+        Hosting de prueba / dominio de desarrollo & Entorno de staging para mostrar el prototipo funcional durante la defensa & USD 5 -- 15 / mes \\
+        Incentivos a entrevistados (opcional) & Eventual compensación simbólica a salones/proveedores que dediquen tiempo a entrevistas extensas & A definir según disponibilidad \\
+        Impresión y encuadernación & Copias físicas del documento final, si la cátedra las requiere & USD 20 -- 40 (estimado) \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsection{Recursos}
+
+Además de los recursos preliminares descriptos en el
+capítulo~\ref{cap:introduccion}, la metodología de gestión del proyecto
+requiere detallar los recursos concretos que se utilizan durante las
+distintas etapas:
+
+\begin{itemize}
+    \item \textbf{Recursos humanos}: el alumno, como responsable del
+          análisis, diseño, desarrollo y validación; el tutor/profesor de
+          la cátedra, para el seguimiento y revisión periódica del
+          avance; y los participantes de las entrevistas y encuestas
+          (clientes, salones y proveedores, incluyendo Rodríguez Catering
+          como caso de estudio real).
+    \item \textbf{Recursos materiales y tecnológicos}: una computadora de
+          desarrollo, conexión a internet, las herramientas de software
+          detalladas en el capítulo~\ref{cap:marco-tecnologico} (React,
+          Laravel, MySQL/SQLite), un repositorio Git para el control de
+          versiones, y Google Forms para las encuestas de la Fase 2.
+    \item \textbf{Recursos de tiempo}: detallados en el diagrama de Gantt
+          de la figura~\ref{fig:gantt}.
+\end{itemize}
+
+\subsection{Riesgos}
+
+Se identifican los siguientes riesgos principales del proyecto de tesis
+en sí --- distintos de los riesgos del negocio--- y sus estrategias de
+mitigación:
+
+\begin{itemize}
+    \item \textbf{Riesgo 1 — Baja participación en las encuestas y
+          entrevistas}: la obtención de información proveniente de
+          clientes, salones y proveedores resulta fundamental para
+          comprender las necesidades reales del sector.
+          \emph{Mitigación}: realizar el relevamiento con distintos
+          perfiles de participantes y utilizar diferentes medios de
+          contacto.
+    \item \textbf{Riesgo 2 — Dificultad para representar adecuadamente el
+          comportamiento de los eventos}: la implementación de
+          herramientas de recomendación y simulación requiere comprender
+          cómo se desarrollan los eventos. \emph{Mitigación}: trabajar con
+          información de las entrevistas y validar los escenarios con
+          usuarios vinculados a la industria.
+    \item \textbf{Riesgo 3 — Complejidad de integrar diferentes
+          funcionalidades en una misma plataforma}: la solución reúne un
+          marketplace, herramientas de gestión y funcionalidades
+          inteligentes que deben funcionar de manera integrada.
+          \emph{Mitigación}: diseñar una arquitectura modular que permita
+          desarrollar y validar cada componente de manera independiente.
+    \item \textbf{Riesgo 4 — Cambios en los requerimientos identificados
+          durante la investigación}: podrían surgir nuevas necesidades a
+          medida que avance el relevamiento. \emph{Mitigación}: mantener
+          un proceso de revisión continua y priorizar las funcionalidades
+          más importantes.
+    \item \textbf{Riesgo 5 — Limitaciones de tiempo durante el
+          desarrollo}: la cantidad de funcionalidades propuestas podría
+          generar dificultades para completar todas las etapas.
+          \emph{Mitigación}: definir prioridades de desarrollo y
+          establecer entregas parciales.
+\end{itemize}
+
+\subsection{Calidad}
+
+Se implementan mecanismos de verificación y validación a lo largo de todo
+el proyecto: pruebas sobre las principales características de la
+plataforma (marketplace, herramientas de gestión, recomendación y
+simulación), pruebas de integración entre componentes, pruebas de
+usabilidad con los tres grupos de usuarios, verificación del cumplimiento
+de los requerimientos funcionales y no funcionales, y elaboración de la
+documentación técnica y funcional del sistema.
+
+\subsection{Satisfacción}
+
+La satisfacción de los usuarios finales se evalúa mediante encuestas y
+pruebas realizadas con personas que hayan organizado eventos, propietarios
+de salones y proveedores de servicios, considerando: facilidad de uso y
+claridad de la interfaz; utilidad del marketplace, de las herramientas de
+gestión, de las recomendaciones y del Gemelo Digital; percepción de
+mejora en la organización y toma de decisiones; satisfacción general;
+intención de uso futuro; y disposición a recomendar la plataforma.

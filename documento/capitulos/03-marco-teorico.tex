@@ -1,0 +1,551 @@
+%!TEX root = ../main.tex
+% =============================================================
+%  CAPÍTULO 3 — MARCO TEÓRICO Y ESTADO DEL ARTE
+%                                       (Entrega 3 · 10 % · 28/7)
+% =============================================================
+
+\chapter{Síntesis de la literatura consultada}\label{cap:marco-teorico}
+
+\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
+\begin{enumerate}
+    \item \textbf{Estado del arte}: investigaciones nacionales,
+          internacionales y productos similares, por separado. De cada
+          trabajo: qué hizo y qué resultados obtuvo, con métricas.
+    \item \textbf{Brechas identificadas}: qué falta en lo existente y
+          justifica \emph{este} proyecto. Es lo que separa un estado del
+          arte de un listado. Incluir también los resultados negativos de
+          la literatura.
+    \item \textbf{Bases teóricas}: desarrollan las variables del título y su
+          relación. Cada concepto termina explicando cómo se usa en el
+          proyecto (teoría instrumental, no de relleno). Citas canónicas
+          antes que tutoriales.
+    \item \textbf{Marco conceptual}: conceptos que se nombran pero no se
+          desarrollan. Los términos del glosario se marcan con
+          \verb|\gls{}|, por ejemplo \gls{g:mvp} y \gls{prototipo}.
+    \item \textbf{Calidad bibliográfica}: papers, tesis y libros de
+          editoriales serias, con datos completos. Wikipedia y blogs restan.
+    \item \textbf{Entrevistas a especialistas} (si las hay): fecha, nombre,
+          cargo y aporte; transcripción en el apéndice~\ref{apx:entrevista}.
+\end{enumerate}
+Errores que la cátedra marca: falta de coherencia interna, bibliografía
+superficial, información irrelevante o redundante. Es uno de los
+capítulos más extensos (orientativo: 20 a 30 páginas).
+\end{guia}
+
+La organización de eventos, tanto empresariales como sociales, ha
+evolucionado en los últimos años debido al crecimiento de la propia
+industria y a la incorporación de nuevas tecnologías. Asimismo, tanto los
+clientes como los invitados han aumentado sus expectativas con el paso
+del tiempo, siendo cada vez más exigentes respecto a la calidad de los
+servicios y a la experiencia que esperan vivir.
+
+Organizar un evento implica coordinar una gran cantidad de actores, entre
+ellos salones, servicios de catering, fotógrafos, decoradores, empresas
+de entretenimiento, proveedores de equipamiento y distintos profesionales
+que deben trabajar de manera coordinada para garantizar el éxito del
+evento. Esta coordinación requiere una planificación constante y un
+seguimiento de cada una de las tareas que forman parte de la
+organización.
+
+A pesar de estos avances, gran parte de la organización continúa
+llevándose a cabo mediante plataformas independientes, como redes
+sociales, aplicaciones de mensajería y distintos sistemas de gestión.
+Esto provoca que los clientes no tengan toda la información de su evento
+centralizada en un único lugar, dificultando el seguimiento de las tareas
+y aumentando la posibilidad de cometer errores o perder información
+importante durante la planificación.
+
+A partir de esta situación, resulta necesario analizar las tecnologías y
+herramientas que actualmente se utilizan para la organización de eventos,
+así como las distintas plataformas e investigaciones desarrolladas en
+este ámbito, con el fin de identificar oportunidades de mejora y
+fundamentar el desarrollo de la propuesta planteada en este trabajo.
+
+\section{Concepto de la industria de los eventos}
+
+La industria de los eventos ha crecido mucho en los últimos años,
+generando mayor importancia en el ámbito social, cultural y profesional.
+Gracias a este crecimiento, distintos organismos e investigadores
+desarrollaron definiciones y estudios con el objetivo de comprender cómo
+funciona la industria, sus características y los procesos que intervienen
+en la gestión y planificación de los eventos.
+
+\begin{nota}
+Las referencias a Getz, Goldblatt y al Events Industry Council que siguen
+provienen del borrador original del capítulo, pero todavía no tienen una
+entrada bibliográfica completa y verificada en \texttt{refs.bib}
+(edición, editorial, DOI/URL). Antes de la entrega hay que confirmar cada
+dato en la fuente original y agregar la cita con \texttt{\textbackslash
+citet\{\}} --- la cátedra trata una cita sin verificar como una falta
+grave, más todavía si la sugirió una IA.
+\end{nota}
+
+Donald Getz, uno de los autores más influyentes en el desarrollo del
+Event Management y los Event Studies, sostiene en su obra \emph{Event
+Studies: Theory, Research and Policy for Planned Events} que los eventos
+planificados constituyen acontecimientos temporales creados con un
+propósito determinado, que poseen un inicio y un final claramente
+definidos y requieren un proceso de planificación, organización y
+gestión para alcanzar los objetivos propuestos.
+
+Joe Goldblatt, uno de los pioneros en la profesionalización de la gestión
+de eventos, define a un evento como un momento único en el tiempo,
+celebrado mediante ceremonias o actividades específicas con el propósito
+de satisfacer determinadas necesidades.
+
+El Events Industry Council (EIC) considera que esta industria comprende
+el conjunto de actividades relacionadas con la planificación,
+organización y realización de congresos, convenciones, reuniones,
+exposiciones, ferias y otros eventos, involucrando a una amplia red de
+organizaciones y profesionales.
+
+Todas las definiciones coinciden en que la organización de eventos
+constituye una actividad compleja que requiere planificación,
+coordinación y gestión de múltiples recursos, por lo que resulta
+fundamental disponer de herramientas tecnológicas que contribuyan a
+centralizar la información y optimizar la \gls{g:gestion-integral-eventos}
+de cada evento.
+
+\section{Clasificación de los eventos}
+
+\begin{itemize}
+    \item \textbf{Eventos sociales}: casamientos, cumpleaños,
+          aniversarios, bautismos, fiestas de quince años y reuniones
+          privadas, donde la personalización de los servicios es un
+          aspecto fundamental.
+    \item \textbf{Eventos corporativos}: congresos, convenciones,
+          lanzamientos de productos, reuniones empresariales,
+          capacitaciones y actividades de integración de equipos,
+          orientados al cumplimiento de objetivos organizacionales.
+    \item \textbf{Eventos culturales}: recitales, festivales, obras
+          teatrales y exposiciones, con requerimientos logísticos ligados
+          a venta de entradas, seguridad e infraestructura técnica.
+    \item \textbf{Eventos deportivos}: competencias, torneos y
+          campeonatos que requieren planificación de instalaciones,
+          cronogramas, acreditaciones y seguridad.
+    \item \textbf{Ferias, exposiciones y congresos}: orientados al
+          intercambio de conocimientos y la generación de negocios, con
+          administración simultánea de expositores, asistentes y
+          espacios.
+\end{itemize}
+
+\section{Principales actores involucrados}
+
+Un evento no depende de una única persona o empresa, sino de la
+participación de diferentes actores que aportan servicios, recursos e
+información. Entre ellos se destacan:
+
+\begin{itemize}
+    \item \textbf{El cliente}: persona, empresa o institución que
+          solicita el evento y comunica sus necesidades (tipo de evento,
+          fecha, presupuesto, cantidad de invitados).
+    \item \textbf{El organizador o coordinador}: actúa como punto de
+          conexión entre el cliente, el salón y los proveedores,
+          relevando requerimientos, controlando presupuestos y
+          supervisando el cumplimiento de cada tarea.
+    \item \textbf{Los salones y espacios}: administran su calendario de
+          reservas y comunican las condiciones de contratación,
+          capacidad e instalaciones disponibles.
+    \item \textbf{Proveedores gastronómicos}: planifican la elaboración
+          de alimentos y adaptan los menús a las necesidades del cliente.
+    \item \textbf{Proveedores de ambientación y equipamiento}:
+          decoración, mobiliario, mantelería y arreglos florales,
+          coordinando horarios de montaje.
+    \item \textbf{Proveedores técnicos}: sonido, iluminación, pantallas y
+          equipos audiovisuales.
+    \item \textbf{Proveedores audiovisuales y de entretenimiento}:
+          fotografía, filmación, DJs y animadores, que requieren conocer
+          el cronograma completo de actividades.
+\end{itemize}
+
+\section{Proceso general de organización de un evento}
+
+\begin{enumerate}
+    \item \textbf{Definición de requerimientos}: identificación de
+          objetivos, tipo de celebración, fecha, presupuesto y cantidad
+          de asistentes.
+    \item \textbf{Búsqueda y selección de proveedores}: evaluación de
+          disponibilidad, experiencia, calidad y costos, habitualmente a
+          través de redes sociales, sitios web o plataformas de
+          \gls{g:marketplace}.
+    \item \textbf{Cotización y contratación}: solicitud de presupuestos,
+          negociación de condiciones y formalización de reservas
+          mediante contratos y señas.
+    \item \textbf{Planificación y coordinación}: definición del
+          cronograma, distribución del espacio e intercambio permanente
+          de información entre proveedores.
+    \item \textbf{Seguimiento y control}: verificación de confirmaciones,
+          pagos pendientes y cumplimiento de tareas, gestionando cambios
+          de último momento.
+    \item \textbf{Cierre y evaluación}: devolución de equipamiento,
+          cierre de contratos y encuestas de satisfacción para
+          identificar mejoras futuras.
+\end{enumerate}
+
+\section{Problemáticas durante la organización de eventos}
+
+\begin{itemize}
+    \item \textbf{Descentralización de la información}: los datos se
+          dispersan entre correos, WhatsApp, redes sociales y planillas,
+          dificultando saber cuál es la versión más actualizada.
+    \item \textbf{Dificultades en la búsqueda y contratación de
+          proveedores}: cada proveedor utiliza formatos distintos para
+          su información, lo que exige consultas individuales y una alta
+          inversión de tiempo en comparar alternativas.
+    \item \textbf{Problemas de coordinación entre actores}: el uso de
+          herramientas distintas por cada participante aumenta las
+          posibilidades de errores y demoras.
+    \item \textbf{Ausencia de una gestión integral}: las herramientas
+          existentes resuelven solo una parte del proceso, sin ofrecer un
+          seguimiento completo de la organización.
+\end{itemize}
+
+\section{Transformación digital en la industria de los eventos}
+
+La pandemia de COVID-19 impulsó la realización de eventos virtuales e
+híbridos, acelerando la adopción de plataformas más completas capaces de
+centralizar múltiples actividades. Hoy existen soluciones que integran
+gestión de clientes, cronogramas, proveedores, presupuestos y generación
+de indicadores. Sin embargo, la mayoría de las empresas del sector
+todavía no alcanzó un nivel de madurez digital suficiente para
+aprovechar plenamente la \gls{ia}, cuyo uso suele limitarse a asistentes
+virtuales o recomendaciones básicas, sin una integración completa en la
+planificación de eventos.
+
+\section{Plataformas existentes para la gestión y organización de eventos}\label{sec:plataformas-existentes}
+
+\subsection{Internacionales}
+
+Cvent es una de las plataformas más utilizadas para la gestión integral
+de eventos corporativos, congresos y convenciones, con funcionalidades
+basadas en \gls{ia} orientadas a eventos empresariales de mediana y gran
+escala. Bizzabo se especializa en congresos y eventos corporativos, con
+herramientas de personalización de la experiencia de los asistentes.
+Whova ofrece gestión de asistentes, agendas y networking para congresos y
+reuniones empresariales, aunque no cuenta con herramientas de gestión
+integral de proveedores ni de simulación. WeddingWire y The Knot
+funcionan como marketplaces especializados en la organización de bodas,
+permitiendo localizar proveedores y consultar opiniones, aunque la
+gestión posterior del evento continúa realizándose mediante herramientas
+externas.
+
+\begin{table}[H]
+    \centering
+    \caption{Plataformas internacionales relevadas}
+    \label{tab:plataformas-internacionales}
+    \small
+    \begin{tabularx}{\textwidth}{l L c c c c}
+        \toprule
+        \tb{Plataforma} & \tb{Enfoque principal} & \tb{Marketplace} & \tb{Gestión integral} & \tb{IA} & \tb{Gemelo Digital} \\
+        \midrule
+        Cvent & Eventos corporativos, congresos y convenciones & No & Sí & Parcial & No \\
+        Bizzabo & Congresos y eventos corporativos & No & Sí & Parcial & No \\
+        Whova & Congresos y reuniones empresariales & No & Parcial & No & No \\
+        WeddingWire & Organización de bodas y contratación de proveedores & Sí & No & No & No \\
+        The Knot & Organización de bodas y contratación de proveedores & Sí & No & No & No \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsection{Nacionales}
+
+BIG Fiestas y FEX Eventos son plataformas argentinas orientadas a la
+organización de eventos sociales mediante un modelo de
+\gls{g:marketplace}, centralizando la búsqueda de proveedores sin
+incorporar herramientas de gestión integral. Casamientos.com.ar es una de
+las plataformas argentinas más reconocidas para bodas, enfocada
+principalmente en la contratación de servicios.
+
+\begin{table}[H]
+    \centering
+    \caption{Plataformas nacionales relevadas}
+    \label{tab:plataformas-nacionales}
+    \small
+    \begin{tabularx}{\textwidth}{l L c c c c}
+        \toprule
+        \tb{Plataforma} & \tb{Enfoque principal} & \tb{Marketplace} & \tb{Gestión integral} & \tb{IA} & \tb{Gemelo Digital} \\
+        \midrule
+        BIG Fiestas & Organización de eventos sociales y contratación de proveedores & Sí & No & No & No \\
+        FEX Eventos & Búsqueda y contratación de proveedores & Sí & No & No & No \\
+        Casamientos.com.ar & Organización de bodas y contratación de proveedores & Sí & No & No & No \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsection{Brecha identificada}
+
+Ninguna de las plataformas relevadas, nacionales ni internacionales,
+combina las tres capas que propone este proyecto: \gls{g:marketplace} de
+servicios, gestión integral (reservas, presupuestos, contratos, pagos) y
+funcionalidades inteligentes de recomendación y simulación. Las
+plataformas de gestión corporativa (Cvent, Bizzabo) resuelven la gestión
+pero no operan como marketplace abierto; los marketplaces de bodas
+(WeddingWire, The Knot, BIG Fiestas, FEX Eventos, Casamientos.com.ar)
+resuelven la búsqueda y contratación pero no ofrecen herramientas de
+gestión posterior ni de simulación. Esta brecha es la que justifica el
+desarrollo de una plataforma integral en lugar de sumarse a una categoría
+ya cubierta por la oferta existente.
+
+\section{Inteligencia artificial aplicada a la organización de eventos}
+
+La \gls{ia} puede definirse como un conjunto de tecnologías capaces de
+procesar grandes volúmenes de información para identificar patrones,
+generar recomendaciones y asistir en la toma de decisiones. En este
+proyecto se busca que el sistema analice la información disponible para
+sugerir las opciones más compatibles con las necesidades del usuario,
+considerando variables como disponibilidad, capacidad, precio, proximidad
+geográfica y valoraciones de otros clientes.
+
+\subsection{¿Qué es un Gemelo Digital?}
+
+El \gls{g:gemelo-digital} (Digital Twin) es una representación virtual de
+un objeto, proceso o sistema real que permite analizar su comportamiento
+mediante información proveniente del entorno que representa. A diferencia
+de un modelo estático o de una simulación tradicional, el Gemelo Digital
+se actualiza continuamente con nuevos datos, permitiendo simular
+distintos escenarios a medida que cambia la información del sistema real.
+
+\begin{table}[H]
+    \centering
+    \caption{Modelo estático, simulación tradicional y Gemelo Digital}
+    \label{tab:gemelo-digital-comparacion}
+    \small
+    \begin{tabularx}{\textwidth}{L L L}
+        \toprule
+        \tb{Modelo digital estático} & \tb{Simulación tradicional} & \tb{Gemelo Digital} \\
+        \midrule
+        Representación digital de un objeto o proceso. No cambia
+        automáticamente ni analiza comportamientos por sí solo. &
+        Modelo que ejecuta uno o varios escenarios definidos. Se ejecuta
+        para analizar un escenario específico. &
+        Representación digital que se actualiza con datos y permite
+        simulaciones continuas. Evoluciona junto con el sistema real. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Aplicado al proyecto, el Gemelo Digital representa virtualmente cada
+evento registrado por el usuario (tipo, fecha, ubicación, invitados,
+presupuesto y proveedores). A medida que el usuario modifica esta
+información, el modelo actualiza su estado, permitiendo evaluar el
+impacto de decisiones como un aumento en la cantidad de invitados sobre
+la capacidad del salón, el catering o el presupuesto.
+
+\section{Marco teórico: relación de variables del proyecto}
+
+Siguiendo el enfoque planteado por la cátedra, se identifican a
+continuación las dos variables centrales sobre las que se apoya el
+proyecto, explicando cómo se relacionan entre sí en lugar de tratarlas
+como conceptos aislados.
+
+\subsection{Variable 1: plataformas de marketplace (economía de plataformas)}
+
+Un \gls{g:marketplace} digital constituye lo que la literatura económica
+denomina \gls{g:economia-plataformas} (\emph{two-sided market}): una
+plataforma que conecta a dos grupos de usuarios distintos ---clientes que
+buscan contratar servicios de eventos y salones/proveedores que ofrecen
+esos servicios--- cuyo valor para cada lado depende de la cantidad y
+calidad de participantes del lado opuesto. \citet{rochettirole2006}
+formalizaron este concepto y explicaron por qué este tipo de plataformas
+suele requerir estrategias de precios diferenciadas para cada lado del
+mercado.
+
+\subsection{Variable 2: sistemas de recomendación basados en inteligencia artificial}
+
+Los \gls{g:sistema-recomendacion} procesan información sobre
+preferencias, comportamiento y características de los usuarios para
+sugerir automáticamente las opciones más adecuadas. \citet{riveroetal2025},
+en una revisión de literatura sobre automatización mediante \gls{ia} en
+el ámbito turístico, identificaron que la principal tendencia de
+investigación actual es el desarrollo y la personalización de sistemas de
+recomendación, confirmando la relevancia de este tipo de herramientas en
+industrias de servicios con alto grado de intermediación.
+
+\subsection{Relación entre ambas variables}
+
+En un mercado de dos lados con una gran cantidad de proveedores y
+combinaciones posibles, como el de la organización de eventos, el costo
+de búsqueda que enfrenta el cliente crece rápidamente a medida que
+aumenta la oferta disponible. Un sistema de recomendación basado en
+\gls{ia} reduce ese costo de búsqueda, priorizando las combinaciones con
+mayor compatibilidad con las características del evento. Esta relación
+no es unidireccional: cuantos más usuarios utiliza el marketplace, más
+datos genera, y esos datos son el insumo principal para mejorar la
+precisión de las recomendaciones, en un ciclo de retroalimentación entre
+ambas variables. El Gemelo Digital se apoya sobre esta misma relación,
+utilizando tanto los datos del marketplace como las salidas del sistema
+de recomendación para simular el impacto de distintas decisiones antes de
+que el evento se lleve a cabo.
+
+\begin{nota}
+Esta relación entre marketplace, recomendación y datos de uso es la que
+después justifica, en el capítulo~\ref{cap:marco-tecnologico}, la
+elección de una arquitectura que permite incorporar el motor de
+recomendación como un componente adicional sin rediseñar el sistema, y en
+el capítulo~\ref{cap:economica}, el complemento de \gls{ia} como una
+fuente de ingreso separada de la suscripción base.
+\end{nota}
+
+\section{Marco conceptual}
+
+A continuación se definen conceptos utilizados a lo largo del trabajo que
+no fueron desarrollados en profundidad en las secciones anteriores.
+
+\begin{description}
+    \item[\gls{g:economia-plataformas}] Modelo de negocio digital en el
+          que una plataforma crea valor principalmente al facilitar las
+          interacciones entre dos o más grupos de usuarios
+          interdependientes \citep{rochettirole2006}.
+    \item[\gls{ml}] Subcampo de la \gls{ia} que permite que un sistema
+          mejore su desempeño en una tarea a partir del análisis de
+          datos, sin ser programado explícitamente para cada caso.
+    \item[\gls{g:big-data}] Conjuntos de datos de gran volumen, velocidad
+          y variedad, base sobre la que operan los sistemas de
+          recomendación y los Gemelos Digitales.
+    \item[\gls{g:cloud-computing}] Modelo de provisión de infraestructura,
+          almacenamiento y procesamiento a través de Internet, sin
+          administrar servidores físicos propios.
+    \item[\gls{g:mvp}] Versión mínima de un producto, funcional y
+          utilizable por usuarios reales, que permite validar una
+          propuesta de valor con la menor inversión de desarrollo
+          posible.
+    \item[\gls{api} REST] Conjunto de reglas que permite la comunicación
+          entre el frontend y el backend de una aplicación mediante
+          solicitudes HTTP estandarizadas.
+    \item[\gls{stakeholder}] Toda persona, grupo u organización que
+          participa del proyecto o se ve afectada por sus resultados.
+\end{description}
+
+\section{Antecedentes de investigación: estudios nacionales e internacionales}
+
+Además de las plataformas comerciales relevadas en la
+sección~\ref{sec:plataformas-existentes}, se identificaron los siguientes
+antecedentes académicos vinculados a las variables centrales del
+proyecto:
+
+\begin{itemize}
+    \item \citet{licht2023} --- Universidad de Palermo (tesis de
+          maestría, Argentina). Plan de negocios para un marketplace que
+          conecta productores de frutas y verduras con consumidores en la
+          Ciudad de Buenos Aires, con un modelo de ingresos mixto
+          (suscripción + comisión del 5\,\%) evaluado mediante \gls{van}
+          y \gls{tir}, validando la aplicabilidad de esta metodología a
+          proyectos de marketplace en Argentina.
+    \item \citet{riveroetal2025} --- Universidad Nacional de La Plata.
+          Revisión de literatura sobre automatización mediante \gls{ia}
+          en el ámbito turístico, que concluye que la principal línea de
+          investigación actual es la personalización de sistemas de
+          recomendación.
+    \item \citet{chicaizaetal2024} --- Universidad de Sevilla. Revisión
+          histórica del concepto de Gemelo Digital, que señala su
+          expansión reciente desde la industria manufacturera hacia otros
+          campos, respaldando su aplicación a un dominio no industrial
+          como la organización de eventos.
+    \item \citet{varaschiquito2020} --- RECIMUNDO. Revisión bibliográfica
+          sobre la evolución de los Gemelos Digitales, describiendo las
+          tecnologías habilitantes (IoT, Big Data, IA y Cloud Computing)
+          que coinciden con las consideradas en el marco tecnológico del
+          proyecto.
+    \item \citet{rochettirole2006} --- The RAND Journal of Economics.
+          Artículo de referencia sobre mercados de dos lados, que
+          formaliza el marco teórico utilizado en la
+          sección~\ref{sec:plataformas-existentes}.
+\end{itemize}
+
+\begin{nota}
+El antecedente más directo del capítulo~\ref{cap:economica} es la tesis
+de la Universidad de Palermo \citep{licht2023}: usa exactamente el mismo
+tipo de modelo de ingresos (suscripción + comisión del 5\,\%) y la misma
+metodología de evaluación (\gls{van} y \gls{tir}) que se aplicó más
+adelante en este proyecto.
+\end{nota}
+
+\section{Entrevistas a especialistas}
+
+Se realizaron dos entrevistas semiestructuradas a especialistas del
+sector (transcripción completa en el apéndice~\ref{apx:entrevista}): una
+al dueño de un salón de eventos con más de diez años de experiencia
+(22/07/2026), y otra a la gerente de planificación y ejecución de una
+empresa de decoración y ambientación con más de diez años de experiencia
+(23/07/2026). Ambas coinciden en identificar la coordinación entre
+proveedores y la actualización de la información de pagos como los
+puntos más difíciles de sostener con las herramientas actuales
+(WhatsApp, Excel, agenda en papel), y se muestran receptivas a
+funcionalidades de calendario compartido, registro de pagos y consulta de
+información según el rol de cada usuario. La utilidad de las
+recomendaciones automáticas y de la simulación previa del evento generó
+opiniones más dispares: mientras la entrevista de decoración las valora
+positivamente, la de salón se muestra cauta con las recomendaciones y ve
+la simulación como una herramienta pensada sobre todo para el cliente.
+
+\begin{nota}
+Queda pendiente la entrevista a un responsable de catering, que falta
+para completar la Fase~2 de la metodología.
+\end{nota}
+
+\section{Encuesta a posibles usuarios}
+
+Para triangular con las entrevistas anteriores, se relevó también a
+potenciales clientes de la plataforma mediante una encuesta autoadministrada
+(cuestionario completo y metodología en el apéndice~\ref{apx:encuesta}),
+abierta entre el 22/09/2026 y el 29/09/2026, con 45 respuestas.
+
+\subsection{Cómo organizan hoy su evento}
+
+El 91,1\,\% de quienes respondieron ya había organizado un evento
+(casamiento, cumpleaños, fiesta de 15 u otro), la mayoría de entre 50 y
+100 invitados (42,2\,\%). Los medios más usados para buscar y contratar
+proveedores fueron Instagram o Facebook y la recomendación de conocidos
+(55,6\,\% cada uno), seguidos por WhatsApp (48,9\,\%) y Google
+(31,1\,\%); solo un 2,2\,\% usó alguna app o sitio de tipo marketplace
+ya existente (BIG Fiestas, Casamientos.com.ar), lo que confirma que
+estas plataformas todavía no son el canal principal de búsqueda relevado
+en la sección~\ref{sec:plataformas-existentes}.
+
+\begin{table}[H]
+    \centering
+    \caption{Esfuerzo de búsqueda y contratación reportado}
+    \label{tab:encuesta-esfuerzo}
+    \small
+    \begin{tabularx}{\textwidth}{L L}
+        \toprule
+        \tb{Proveedores contactados} & \tb{Tiempo dedicado a buscar y comparar} \\
+        \midrule
+        1 a 3: 40,0\,\% & Menos de 1 semana: 24,4\,\% \\
+        4 a 6: 57,8\,\% & Entre 1 y 4 semanas: 46,7\,\% \\
+        7 o más: 2,2\,\% & Más de 1 mes: 28,9\,\% \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Lo más difícil de organizar fue, en orden, comparar precios (64,4\,\%),
+encontrar opciones disponibles (37,8\,\%), coordinar horarios entre
+proveedores (22,2\,\%) y llevar el control de pagos y presupuesto
+(20,0\,\%). En una escala de 1 a 5, la complejidad percibida promedió
+3,04, con un 35,6\,\% calificándola 4 o 5.
+
+\subsection{Interés en la propuesta}
+
+El 82,2\,\% usaría ``seguro'' una única plataforma para buscar, comparar
+y contratar todos los servicios de su evento, y un 8,9\,\% adicional
+``probablemente'' la usaría (91,1\,\% en conjunto). El interés en las
+dos funcionalidades inteligentes es todavía mayor: 93,3\,\% valoró útil
+que la plataforma recomiende proveedores mediante \gls{ia} según
+presupuesto, ubicación y cantidad de invitados, y 97,8\,\% valoró útil
+poder simular el evento antes de confirmarlo.
+
+\subsection{Conclusión de la encuesta}
+
+Los resultados respaldan tanto el diagnóstico del
+capítulo~\ref{cap:introduccion} (la búsqueda y comparación de
+proveedores consume semanas y varios canales distintos, sin que los
+marketplaces existentes hayan desplazado a WhatsApp y las redes sociales)
+como el interés en las tres capas de la propuesta: marketplace,
+recomendación y Gemelo Digital. El interés declarado en la recomendación
+y la simulación superó incluso al interés en la plataforma unificada en
+sí, lo que sugiere que el componente inteligente no es un agregado
+secundario sino parte de lo que motivaría la adopción. Al tratarse de una
+muestra por conveniencia y no probabilística (apéndice~\ref{apx:encuesta}),
+estos porcentajes se toman como una validación exploratoria de la
+dirección del proyecto, no como una medición representativa de toda la
+población.

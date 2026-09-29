@@ -1,0 +1,404 @@
+%!TEX root = ../main.tex
+% =============================================================
+%  CAPÍTULO 5 — JUSTIFICACIÓN ECONÓMICA (Entrega 5 · 15 % · 15/9)
+% =============================================================
+
+\chapter{Justificación económica}\label{cap:economica}
+
+\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
+Es el capítulo de mayor peso individual (15\,\%). Se evalúa como una
+evaluación de proyectos de inversión:
+\begin{enumerate}
+    \item \textbf{Análisis de mercado y competidores}: tamaño, segmentos,
+          precios de referencia.
+    \item \textbf{Modelo de negocio}: B2B, B2C, B2G o interno; niveles de
+          precio y fuentes de ingreso.
+    \item \textbf{Inversión inicial} desglosada por rol y tiempo, más
+          infraestructura.
+    \item \textbf{Costos operativos} recurrentes.
+    \item \textbf{Escenarios} pesimista, base y optimista, con flujo de caja
+          proyectado a 3 a 5 años.
+    \item \textbf{Indicadores}: \gls{van}, \gls{tir} y período de repago,
+          con una tasa de descuento construida y justificada con fuentes.
+    \item \textbf{Supuestos y restricciones} explícitos.
+\end{enumerate}
+Todo número con su origen: cotización, tarifa pública, estadística
+citada o estimación propia declarada como tal.
+\end{guia}
+
+\section{Introducción y objetivo del capítulo}
+
+El objetivo de este capítulo es presentar los beneficios tangibles e
+intangibles, desde el punto de vista económico, que se esperan lograr con
+el desarrollo e implementación de la plataforma inteligente de gestión
+integral de eventos propuesta en los capítulos anteriores.
+
+Para esto se realiza un análisis costo-beneficio, se calculan los
+principales indicadores de rentabilidad (flujo de fondos, período de
+repago, \gls{van} y \gls{tir}) y se presenta un análisis de impacto
+institucional, legal, ambiental y social, junto con el caso de negocio
+que justifica la alternativa seleccionada frente a otras posibles.
+
+Todos los montos de este capítulo se expresan en dólares estadounidenses
+(USD), utilizando como referencia la cotización del dólar oficial de
+Argentina de septiembre de 2026 (USD 1 = ARS 1.500), con el fin de evitar
+que la alta inflación local distorsione la comparación de los valores a
+lo largo de los cinco años proyectados.
+
+\begin{nota}
+El modelo de ingresos mixto (suscripción + comisión del 5\,\%) que se usa
+en todo este capítulo replica el mismo esquema y la misma metodología de
+evaluación (\gls{van} y \gls{tir}) que la tesis de \citet{licht2023}
+citada como antecedente académico en el
+capítulo~\ref{cap:marco-teorico} (sección 3.11).
+\end{nota}
+
+\section{Estimación de la cantidad de usuarios y contrataciones}
+
+Dado que las encuestas y entrevistas de la Fase 2 de la metodología
+todavía se encuentran en curso, la
+cantidad de usuarios y de contrataciones utilizada en este capítulo se
+estimó a partir de fuentes secundarias sobre el mercado de eventos en
+Argentina, como una primera aproximación que deberá ajustarse una vez
+procesados los resultados reales de las encuestas.
+
+Como referencia de mercado se relevó que:
+
+\begin{itemize}
+    \item \textbf{Alcance de mercado}: los principales directorios y
+          marketplaces de salones que operan en Argentina (InEventos,
+          Casamientos.com.ar, entre otros) listan más de 100 salones a
+          nivel nacional, con una concentración importante en CABA y el
+          Gran Buenos Aires (más de 40 salones solo en CABA).
+    \item \textbf{Volumen por salón}: según la Asociación de
+          Organizadores de Fiestas, Reuniones y Eventos Empresariales y
+          sus Proveedores de la República Argentina (Aoefrep), un salón
+          promedio realiza alrededor de 80 eventos por año.
+\end{itemize}
+
+A partir de estos datos se optó por una estimación deliberadamente
+conservadora para el lanzamiento: en el Año 1 la plataforma no busca
+capturar el volumen completo de un salón promedio, sino operar como una
+prueba piloto acotada, del orden de 20 contrataciones gestionadas a
+través del marketplace, creciendo de forma gradual a medida que se suman
+salones y proveedores. La plataforma se lanza inicialmente en Buenos
+Aires y el Gran Buenos Aires, la misma zona donde opera Rodríguez
+Catering, el caso real utilizado en el prototipo.
+
+\begin{table}[H]
+    \centering
+    \caption{Evolución estimada de la adopción}
+    \label{tab:adopcion}
+    \small
+    \begin{tabularx}{\textwidth}{L R R R R R}
+        \toprule
+        \tb{Concepto} & \tb{Año 1} & \tb{Año 2} & \tb{Año 3} & \tb{Año 4} & \tb{Año 5} \\
+        \midrule
+        Salones/proveedores suscriptos (acum.) & 15 & 40 & 90 & 160 & 250 \\
+        Contrataciones vía marketplace & 20 & 75 & 200 & 400 & 750 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Esta proyección implica que recién hacia el Año 5 la plataforma
+alcanzaría una penetración de entre el 20\,\% y el 30\,\% del total de
+salones identificados en los directorios relevados a nivel nacional, lo
+cual se considera una meta ambiciosa pero razonable para un proyecto de
+este tipo dentro del horizonte analizado.
+
+\section{Análisis costo-beneficio}
+
+\subsection{Costos de inversión inicial (Año 0)}
+
+\begin{nota}
+El monto de USD 6.000 de esta tabla se estimó, en el borrador original de
+este capítulo, como el costo de ``ampliar el prototipo al marketplace
+completo'' --- es decir, asumía que el marketplace todavía no existía.
+Según el capítulo~\ref{cap:marco-tecnologico} (corregido con el estado
+real del sistema), el marketplace, la recomendación y el Gemelo Digital
+ya están implementados al momento de esta entrega. Este número queda tal
+cual estaba en el borrador porque cambiar el supuesto de inversión es una
+decisión del autor, no algo que deba reinterpretar una IA; conviene
+revisarlo antes de la entrega final, por ejemplo replanteándolo como el
+costo de llevar el prototipo actual a producción (hosting definitivo,
+pasarela de pagos, hardening de seguridad) en lugar de construir el
+marketplace desde cero.
+\end{nota}
+
+Corresponden a los costos necesarios para llevar la plataforma desde el
+prototipo actual (desarrollado sobre Rodríguez Catering) hasta una
+primera versión publicada y operativa del marketplace.
+
+\begin{table}[H]
+    \centering
+    \caption{Inversión inicial desglosada}
+    \label{tab:inversion}
+    \small
+    \begin{tabularx}{\textwidth}{c L r}
+        \toprule
+        \tb{\#} & \tb{Descripción del costo} & \tb{Monto (USD)} \\
+        \midrule
+        1 & Desarrollo de software (ampliación del prototipo al marketplace completo) & 6.000 \\
+        2 & Diseño de interfaz (\gls{ux}/UI) y branding de la plataforma & 530 \\
+        3 & Infraestructura inicial (servidor cloud, dominio, certificados SSL) & 200 \\
+        4 & Licencias e integraciones de terceros (pagos, mapas, mensajería) & 170 \\
+        5 & Marketing de lanzamiento & 430 \\
+        \midrule
+        \multicolumn{2}{r}{\tb{Total inversión inicial}} & \tb{7.330} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+El monto de inversión resulta comparativamente bajo porque el desarrollo
+inicial es realizado por el propio tesista como parte del proyecto, y
+porque los costos de infraestructura y desarrollo en Argentina son
+considerablemente menores en dólares que en otros países de la región,
+dado el tipo de cambio actual.
+
+\begin{nota}
+Los USD 6.000 de desarrollo y los costos de hosting/infraestructura de
+esta sección están basados en el stack tecnológico definido en el
+capítulo~\ref{cap:marco-tecnologico} (React, Laravel, MySQL en modalidad
+cloud); cualquier cambio en esas tecnologías debería reflejarse también
+aquí.
+\end{nota}
+
+\subsection{Costos operativos (post-lanzamiento)}
+
+\begin{table}[H]
+    \centering
+    \caption{Costos operativos proyectados, en USD}
+    \label{tab:costos-operativos}
+    \small
+    \begin{tabularx}{\textwidth}{L R R R R R}
+        \toprule
+        \tb{Concepto} & \tb{Año 1} & \tb{Año 2} & \tb{Año 3} & \tb{Año 4} & \tb{Año 5} \\
+        \midrule
+        Hosting y servicios cloud & 400 & 600 & 930 & 1.470 & 2.130 \\
+        Mantenimiento y soporte técnico & 1.200 & 1.470 & 1.870 & 2.400 & 3.200 \\
+        Marketing y adquisición de usuarios & 800 & 1.200 & 1.800 & 2.800 & 4.000 \\
+        Atención al cliente / community mgmt. & 600 & 730 & 1.400 & 2.630 & 4.000 \\
+        \midrule
+        \tb{Total costos operativos} & \tb{3.000} & \tb{4.000} & \tb{6.000} & \tb{9.300} & \tb{13.300} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\subsection{Beneficios (fuentes de ingreso)}
+
+De acuerdo con el modelo de negocio definido para la plataforma, se
+adopta un modelo mixto de ingresos, compuesto por:
+
+\begin{itemize}
+    \item \textbf{Suscripción mensual base}: para que salones y
+          proveedores puedan administrar reservas, presupuestos,
+          contratos y pagos, y aparecer en el marketplace. Para
+          incentivar la adopción temprana, se fija un precio de
+          lanzamiento reducido de USD 5/mes durante los Años 1 y 2, que
+          pasa a USD 15/mes a partir del Año 3, una vez consolidada la
+          base de usuarios.
+    \item \textbf{Complemento de \gls{ia}}: opcional, con un costo
+          adicional muy bajo de USD 5/mes, que habilita el acceso a las
+          recomendaciones inteligentes y a las simulaciones del Gemelo
+          Digital. Se mantiene deliberadamente accesible para
+          incentivar su adopción y generar el volumen de datos de uso
+          necesario para mejorar el motor de recomendación.
+    \item \textbf{Comisión por contratación}: del 5\,\% sobre el valor
+          del servicio contratado a través del marketplace, tomando un
+          ticket promedio estimado de USD 1.500 por contratación.
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \caption{Composición de ingresos proyectados}
+    \label{tab:ingresos}
+    \small
+    \begin{tabularx}{\textwidth}{L R R R R R}
+        \toprule
+        \tb{Concepto} & \tb{Año 1} & \tb{Año 2} & \tb{Año 3} & \tb{Año 4} & \tb{Año 5} \\
+        \midrule
+        Salones/proveedores suscriptos & 15 & 40 & 90 & 160 & 250 \\
+        Precio suscripción base/mes (USD) & 5 & 5 & 15 & 15 & 15 \\
+        \% que contrata el complemento de IA & 20\,\% & 30\,\% & 45\,\% & 60\,\% & 70\,\% \\
+        Ingreso promedio por suscriptor/mes (USD) & 6,0 & 6,5 & 17,3 & 18,0 & 18,5 \\
+        Ingresos por suscripción (anual) & 1.080 & 3.120 & 18.630 & 34.560 & 55.500 \\
+        \midrule
+        Contrataciones vía marketplace & 20 & 75 & 200 & 400 & 750 \\
+        Ticket promedio por contratación (USD) & 1.500 & 1.500 & 1.500 & 1.500 & 1.500 \\
+        Ingresos por comisión (5\,\%) & 1.500 & 5.625 & 15.000 & 30.000 & 56.250 \\
+        \midrule
+        \tb{Total ingresos} & \tb{2.580} & \tb{8.745} & \tb{33.630} & \tb{64.560} & \tb{111.750} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Flujo de fondos proyectado}
+
+\begin{table}[H]
+    \centering
+    \caption{Flujo de fondos proyectado, en USD}
+    \label{tab:flujo-caja}
+    \small
+    \begin{tabularx}{\textwidth}{l R R R R R R}
+        \toprule
+        \tb{} & \tb{Año 0} & \tb{Año 1} & \tb{Año 2} & \tb{Año 3} & \tb{Año 4} & \tb{Año 5} \\
+        \midrule
+        Inversión inicial & $-$7.330 & & & & & \\
+        Ingresos & & 2.580 & 8.745 & 33.630 & 64.560 & 111.750 \\
+        Costos operativos & & $-$3.000 & $-$4.000 & $-$6.000 & $-$9.300 & $-$13.300 \\
+        \midrule
+        \tb{Flujo de fondos neto} & \tb{$-$7.330} & \tb{$-$420} & \tb{4.745} & \tb{27.630} & \tb{55.260} & \tb{98.450} \\
+        \tb{Flujo acumulado} & \tb{$-$7.330} & \tb{$-$7.750} & \tb{$-$3.005} & \tb{24.625} & \tb{79.885} & \tb{178.335} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Indicadores de rentabilidad}
+
+\subsection{Período de repago (\emph{payback})}
+
+Con el precio de suscripción reducido de los primeros dos años, el
+flujo neto del Año 1 pasa a ser levemente negativo, y el flujo
+acumulado recién se vuelve positivo durante el Año 3. Interpolando
+dentro de ese año:
+\[
+    \text{Payback} \approx 2 \text{ años} + \frac{3.005}{27.630}
+    \approx 2{,}1 \text{ años (aproximadamente 2 años y 1 mes)}.
+\]
+
+\subsection{Valor actual neto (\acrshort{van})}
+
+Aplicando una tasa de corte del 20\,\% anual (se utiliza una tasa
+relativamente alta para reflejar tanto el riesgo propio de un proyecto
+tecnológico en etapa temprana como el riesgo país de Argentina):
+\begin{equation}
+    \mathit{VAN} = \sum_{t=0}^{5} \frac{\gls{sym:fc}}{(1+\gls{sym:r})^{t}}
+    \approx \text{USD } 77.800,
+    \label{eq:van}
+\end{equation}
+donde $r = 0{,}20$. Al ser $\gls{van} \geq 0$, según el criterio de
+decisión, el proyecto es aceptado.
+
+\subsection{Tasa interna de retorno (\acrshort{tir})}
+
+Calculando la tasa que hace al \gls{van} igual a cero sobre el mismo
+flujo de fondos, se obtiene una \gls{tir} aproximada del 122\,\%.
+
+Este valor se explica principalmente por el bajo monto de inversión
+inicial (USD 7.330), consecuencia de que gran parte del desarrollo se
+realiza como trabajo propio del tesista y no como una contratación de
+mercado. Un análisis más conservador podría incorporar un costo de
+oportunidad por el tiempo dedicado por el desarrollador, lo cual
+reduciría la \gls{tir} sin modificar la conclusión general: el proyecto
+resulta económicamente viable bajo los supuestos planteados.
+
+\begin{table}[H]
+    \centering
+    \caption{Indicadores financieros del escenario base}
+    \label{tab:indicadores-financieros}
+    \small
+    \begin{tabular}{l r r r}
+        \toprule
+        \tb{Escenario} & \tb{VAN (USD)} & \tb{TIR} & \tb{Repago} \\
+        \midrule
+        Base & 77.800 & 122\,\% & $\approx$2,1 años \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{nota}
+Estos indicadores son estimaciones preliminares, sensibles a los
+supuestos de adopción de salones/proveedores y de volumen de
+contrataciones. Se recomienda recalcularlos una vez procesados los datos
+reales de las encuestas de la Fase 2, y presentar además un escenario
+pesimista y uno optimista como análisis de sensibilidad --- la cátedra
+pide explícitamente los tres escenarios y acá todavía solo está el
+escenario base.
+\end{nota}
+
+\section{Análisis de impacto}
+
+\subsection{Justificación institucional}
+
+En la actualidad, tanto Rodríguez Catering como los demás salones y
+proveedores relevados administran su información de forma manual o
+mediante herramientas independientes (WhatsApp, Excel, planillas en
+papel), lo que genera duplicación de tareas y pérdida de información. La
+situación deseada es contar con una plataforma única que centralice la
+gestión comercial y operativa, reduciendo el tiempo administrativo
+dedicado a tareas repetitivas.
+
+\subsection{Justificación legal}
+
+La plataforma debe cumplir con la normativa vigente de protección de
+datos personales (Ley 25.326 de Protección de Datos Personales) dado que
+administra datos de clientes, proveedores y pagos, y con las
+regulaciones aplicables a plataformas de intermediación comercial y
+procesamiento de pagos electrónicos.
+
+\subsection{Justificación ambiental}
+
+El impacto ambiental directo es reducido, dado que se trata de un
+desarrollo de software. Como impacto positivo indirecto, la
+digitalización de contratos, presupuestos y comunicaciones reduce el uso
+de papel respecto de los procesos actuales, muchos de los cuales aún se
+gestionan mediante documentación impresa.
+
+\subsection{Justificación social}
+
+La plataforma busca facilitar el acceso a servicios de eventos tanto a
+clientes como a pequeños proveedores y salones que actualmente dependen
+de la difusión boca en boca o de redes sociales para conseguir clientes,
+ampliando su visibilidad comercial sin necesidad de una gran inversión
+propia en marketing digital. Además, el precio de suscripción reducido
+durante los primeros dos años busca facilitar específicamente la
+adopción por parte de proveedores más pequeños, que suelen tener menor
+capacidad de inversión inicial en herramientas digitales.
+
+\section{Caso de negocio: alternativas consideradas}
+
+\begin{itemize}
+    \item \textbf{Mantener el statu quo}: continuar utilizando
+          herramientas independientes (redes sociales, WhatsApp,
+          planillas de cálculo). Se descarta porque no resuelve la
+          fragmentación de la información ni ofrece herramientas
+          inteligentes de recomendación o simulación.
+    \item \textbf{Alternativa A -- Marketplace simple sin herramientas de
+          gestión}: desarrollar únicamente un buscador de proveedores
+          similar a BIG Fiestas o FEX Eventos. Se descarta porque no
+          resuelve la gestión posterior del evento ni diferencia al
+          proyecto de las plataformas ya existentes en el mercado
+          argentino.
+    \item \textbf{Alternativa B -- Sistema de gestión (SaaS) sin
+          marketplace}: desarrollar solamente una herramienta de
+          administración para salones y proveedores, sin conectar con
+          clientes. Se descarta porque no centraliza la contratación de
+          servicios.
+    \item \textbf{Alternativa seleccionada}: plataforma integral que
+          combina marketplace, gestión comercial/operativa y
+          funcionalidades inteligentes (recomendación y Gemelo Digital),
+          por ser la única que atiende de manera conjunta las
+          necesidades identificadas en los tres grupos de usuarios
+          (clientes, salones y proveedores).
+\end{itemize}
+
+\section{Conclusión del capítulo}
+
+El análisis económico realizado, aun con carácter estimativo, muestra que
+el proyecto resulta viable desde el punto de vista financiero: recupera
+la inversión inicial en aproximadamente 2 años, y presenta un \gls{van}
+positivo (USD 77.800) y una \gls{tir} (122\,\%) ampliamente superior a la
+tasa de corte considerada. El esquema de precios de lanzamiento reducido
+retrasa levemente el punto de equilibrio respecto de un escenario de
+precios más agresivo, pero resulta coherente con una estrategia de
+adopción gradual orientada a consolidar primero una base sólida de
+usuarios antes de aumentar el precio. A esto se suman beneficios
+intangibles relevantes, como la reducción de la fragmentación de
+información en la industria de eventos y la mayor visibilidad comercial
+para proveedores de menor escala.
+
+Se reitera que la cantidad de usuarios y contrataciones utilizada en
+este capítulo es una estimación preliminar basada en fuentes secundarias
+sobre el mercado de eventos en Argentina, y debe ser reemplazada por los
+datos reales relevados en las encuestas de la Fase 2 en cuanto estén
+disponibles.
