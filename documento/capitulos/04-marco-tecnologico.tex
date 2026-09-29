@@ -102,12 +102,35 @@ sistemas aparte.
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.85\textwidth}{\centering\vspace{2em}
-    \completar{Diagrama de arquitectura cliente-servidor de la plataforma
-    (frontend interno + portal de clientes $\to$ API REST $\to$ Laravel
-    $\to$ MySQL/SQLite, con los servicios de Recomendación y Gemelo
-    Digital colgando del backend).}
-    \vspace{2em}}}
+    \begin{tikzpicture}[
+        node distance=10mm and 8mm,
+        every node/.style={font=\small},
+        box/.style={draw=mainColor, thick, rounded corners, fill=mainColor!8,
+                     align=center, minimum height=9mm, inner sep=3mm},
+        service/.style={draw=mainColor, thick, dashed, rounded corners,
+                     fill=mainColor!4, align=center, minimum height=8mm, inner sep=2.5mm,
+                     font=\small\itshape},
+        lbl/.style={font=\scriptsize, midway, fill=white, inner sep=1pt},
+        arr/.style={-{Stealth[length=2mm]}, thick, draw=mainColor!70!black},
+    ]
+        \node[box] (usuario) {Usuario};
+        \node[box, below left=of usuario, xshift=8mm] (frontend) {Frontend interno\\(panel de gestión)};
+        \node[box, below right=of usuario, xshift=-8mm] (portal) {Portal de clientes};
+        \node[box, below=16mm of usuario] (api) {API REST};
+        \node[box, below=of api] (laravel) {Lógica del sistema\\(Laravel)};
+        \node[service, right=14mm of laravel] (recom) {Servicio de\\Recomendación};
+        \node[service, above=4mm of recom] (gemelo) {Servicio de\\Gemelo Digital};
+        \node[box, below=of laravel] (db) {Base de datos\\(MySQL / SQLite)};
+
+        \draw[arr] (usuario) -- (frontend);
+        \draw[arr] (usuario) -- (portal);
+        \draw[arr] (frontend) -- (api);
+        \draw[arr] (portal) -- (api);
+        \draw[arr] (api) -- (laravel);
+        \draw[arr] (laravel) -- (db);
+        \draw[arr] (laravel.east) -- (recom.west);
+        \draw[arr] (laravel.east) -- (gemelo.west);
+    \end{tikzpicture}
     \caption{Arquitectura cliente-servidor de la plataforma}
     \label{fig:arquitectura}
 \end{figure}
