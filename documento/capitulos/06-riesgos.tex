@@ -97,8 +97,10 @@ tercero: hosting administrado, librería probada) y \textbf{aceptar}
 % Columnas: l = ancho fijo, p{..} = ancho fijo con corte de línea,
 % L = ancho automático (se reparte el espacio restante).
 \begin{landscape}
-\small
-\begin{xltabular}{\linewidth}{l L p{1.7cm} p{1.6cm} c c c L p{1.3cm} L}
+\footnotesize
+\renewcommand{\arraystretch}{0.95}
+\setlength{\tabcolsep}{4pt}
+\begin{xltabular}{\linewidth}{l L p{1.5cm} p{1.5cm} c c c L p{1.1cm} L}
     \caption{Matriz de riesgos ordenada por exposición}
     \label{tab:matriz-riesgos} \\
     \toprule
