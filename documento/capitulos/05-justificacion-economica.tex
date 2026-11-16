@@ -5,32 +5,11 @@
 
 \chapter{Justificación económica}\label{cap:economica}
 
-\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
-Es el capítulo de mayor peso individual (15\,\%). Se evalúa como una
-evaluación de proyectos de inversión:
-\begin{enumerate}
-    \item \textbf{Análisis de mercado y competidores}: tamaño, segmentos,
-          precios de referencia.
-    \item \textbf{Modelo de negocio}: B2B, B2C, B2G o interno; niveles de
-          precio y fuentes de ingreso.
-    \item \textbf{Inversión inicial} desglosada por rol y tiempo, más
-          infraestructura.
-    \item \textbf{Costos operativos} recurrentes.
-    \item \textbf{Escenarios} pesimista, base y optimista, con flujo de caja
-          proyectado a 3 a 5 años.
-    \item \textbf{Indicadores}: \gls{van}, \gls{tir} y período de repago,
-          con una tasa de descuento construida y justificada con fuentes.
-    \item \textbf{Supuestos y restricciones} explícitos.
-\end{enumerate}
-Todo número con su origen: cotización, tarifa pública, estadística
-citada o estimación propia declarada como tal.
-\end{guia}
-
 \section{Introducción y objetivo del capítulo}
 
 El objetivo de este capítulo es presentar los beneficios tangibles e
 intangibles, desde el punto de vista económico, que se esperan lograr con
-el desarrollo e implementación de la plataforma inteligente de gestión
+el desarrollo e implementación de la plataforma de gestión
 integral de eventos propuesta en los capítulos anteriores.
 
 Para esto se realiza un análisis costo-beneficio, se calculan los
@@ -47,12 +26,16 @@ lo largo de los cinco años proyectados.
 
 \section{Estimación de la cantidad de usuarios y contrataciones}
 
-Dado que las encuestas y entrevistas de la Fase 2 de la metodología
-todavía se encuentran en curso, la
-cantidad de usuarios y de contrataciones utilizada en este capítulo se
-estimó a partir de fuentes secundarias sobre el mercado de eventos en
-Argentina, como una primera aproximación que deberá ajustarse una vez
-procesados los resultados reales de las encuestas.
+La cantidad de usuarios y de contrataciones utilizada en este capítulo
+se estimó a partir de fuentes secundarias sobre el mercado de eventos
+en Argentina. La encuesta (45 respuestas) y las tres entrevistas a
+especialistas de la Fase 2 respaldan que existe demanda: el 91,1\,\% de
+los encuestados usaría una plataforma así, seguro o probablemente, y
+solo el 2,2\,\% había usado antes un marketplace para organizar un
+evento. Sin embargo, por tratarse de una muestra por conveniencia, no
+permiten proyectar el volumen de usuarios, de modo que las cifras
+siguen siendo una primera aproximación, que se contrasta con el
+escenario pesimista.
 
 Como referencia de mercado se relevó que:
 
@@ -61,7 +44,9 @@ Como referencia de mercado se relevó que:
           marketplaces de salones que operan en Argentina (InEventos,
           Casamientos.com.ar, entre otros) listan más de 100 salones a
           nivel nacional, con una concentración importante en CABA y el
-          Gran Buenos Aires (más de 40 salones solo en CABA).
+          Gran Buenos Aires (más de 40 salones solo en CABA). Esta cifra
+          refleja lo que se publica en esos directorios y no es un
+          censo del total de salones y proveedores del país.
     \item \textbf{Volumen por salón}: según la Asociación de
           Organizadores de Fiestas, Reuniones y Eventos Empresariales y
           sus Proveedores de la República Argentina (Aoefrep), un salón
@@ -92,11 +77,15 @@ Catering, el caso real utilizado en el prototipo.
     \end{tabularx}
 \end{table}
 
-Esta proyección implica que recién hacia el Año 5 la plataforma
-alcanzaría una penetración de entre el 20\,\% y el 30\,\% del total de
-salones identificados en los directorios relevados a nivel nacional, lo
-cual se considera una meta ambiciosa pero razonable para un proyecto de
-este tipo dentro del horizonte analizado.
+Los suscriptos incluyen salones y también proveedores de otros servicios
+(catering, fotografía, decoración, sonido e iluminación, entretenimiento),
+de modo que solo una parte de ellos son salones y no pueden compararse
+directamente con los más de 100 salones listados en los directorios.
+Como además esos directorios muestran solo una parte de la oferta, la
+proyección no se expresa como porcentaje de un total de mercado
+conocido. Se la considera una hipótesis de adopción, deliberadamente
+gradual, que deberá validarse en un piloto con salones y proveedores
+reales.
 
 \section{Análisis costo-beneficio}
 
@@ -146,7 +135,7 @@ dado el tipo de cambio actual.
         Hosting y servicios cloud & 400 & 600 & 930 & 1.470 & 2.130 \\
         Mantenimiento y soporte técnico & 1.200 & 1.470 & 1.870 & 2.400 & 3.200 \\
         Marketing y adquisición de usuarios & 800 & 1.200 & 1.800 & 2.800 & 4.000 \\
-        Atención al cliente / community mgmt. & 600 & 730 & 1.400 & 2.630 & 4.000 \\
+        Atención al cliente / community mgmt. & 600 & 730 & 1.400 & 2.630 & 3.970 \\
         \midrule
         \tb{Total costos operativos} & \tb{3.000} & \tb{4.000} & \tb{6.000} & \tb{9.300} & \tb{13.300} \\
         \bottomrule
@@ -166,9 +155,9 @@ adopta un modelo mixto de ingresos, compuesto por:
           lanzamiento reducido de USD 5/mes durante los Años 1 y 2, que
           pasa a USD 15/mes a partir del Año 3, una vez consolidada la
           base de usuarios.
-    \item \textbf{Complemento de \gls{ia}}: opcional, con un costo
+    \item \textbf{Complemento de recomendación y simulación}: opcional, con un costo
           adicional muy bajo de USD 5/mes, que habilita el acceso a las
-          recomendaciones inteligentes y a las simulaciones del Gemelo
+          recomendaciones y a las simulaciones del Gemelo
           Digital. Se mantiene deliberadamente accesible para
           incentivar su adopción y generar el volumen de datos de uso
           necesario para mejorar el motor de recomendación.
@@ -188,7 +177,7 @@ adopta un modelo mixto de ingresos, compuesto por:
         \midrule
         Salones/proveedores suscriptos & 15 & 40 & 90 & 160 & 250 \\
         Precio suscripción base/mes (USD) & 5 & 5 & 15 & 15 & 15 \\
-        \% que contrata el complemento de IA & 20\,\% & 30\,\% & 45\,\% & 60\,\% & 70\,\% \\
+        \% que contrata el complemento de recomendación y simulación & 20\,\% & 30\,\% & 45\,\% & 60\,\% & 70\,\% \\
         Ingreso promedio por suscriptor/mes (USD) & 6,0 & 6,5 & 17,3 & 18,0 & 18,5 \\
         Ingresos por suscripción (anual) & 1.080 & 3.120 & 18.630 & 34.560 & 55.500 \\
         \midrule
@@ -200,6 +189,70 @@ adopta un modelo mixto de ingresos, compuesto por:
         \bottomrule
     \end{tabularx}
 \end{table}
+
+\subsection{Beneficio para el usuario: ahorro de tiempo (estimativo)}
+
+Además de los ingresos de la plataforma, el principal beneficio para
+quien organiza un evento es el tiempo que dedica al proceso. Para
+dimensionarlo se presenta un estimativo, con valores aproximados y no
+medidos, de cuánto tiempo de dedicación demandaría cada
+etapa de la organización de un evento social de unos 100 invitados que
+requiere cinco servicios (salón, catering, fotografía, decoración y
+sonido o entretenimiento), con tres alternativas: herramientas
+fragmentadas (redes sociales, WhatsApp y recomendaciones de conocidos),
+marketplaces existentes y la plataforma propuesta. Como referencia de la
+situación actual, en la encuesta realizada el 75,6\,\% de los
+encuestados tardó más de una semana en buscar y comparar proveedores y
+el 60,0\,\% contactó a cuatro o más proveedores distintos.
+
+\begin{table}[H]
+    \centering
+    \caption{Estimativo de horas de dedicación por etapa y alternativa (valores estimados, no medidos)}
+    \label{tab:ahorro-tiempo}
+    \small
+    \begin{tabularx}{\textwidth}{L R R R}
+        \toprule
+        \tb{Etapa} & \tb{Herramientas fragmentadas} & \tb{Marketplace existente} & \tb{Plataforma propuesta} \\
+        \midrule
+        Buscar opciones para los cinco servicios & 10 & 7 & 3 \\
+        Comparar precios y disponibilidad & 10 & 7 & 4 \\
+        Solicitar presupuestos y contratar & 8 & 5 & 3 \\
+        Coordinar horarios y detalles hasta el evento & 12 & 11 & 8 \\
+        Evaluar un cambio (invitados, fecha o presupuesto) & 4 & 4 & 1 \\
+        \midrule
+        \tb{Total de horas} & \tb{44} & \tb{34} & \tb{19} \\
+        Reducción respecto de las herramientas fragmentadas & --- & 23\,\% & 57\,\% \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+La diferencia entre alternativas responde a lo que cada una resuelve:
+\begin{itemize}
+    \item \textbf{Buscar y comparar}: los marketplaces existentes
+          concentran la búsqueda y muestran fichas comparables, pero no
+          priorizan las opciones según el evento; la plataforma propuesta
+          sugiere salones y proveedores según presupuesto, capacidad,
+          ubicación y reseñas, con el motivo de cada sugerencia.
+    \item \textbf{Solicitar y contratar}: la plataforma propuesta
+          centraliza las solicitudes y las reservas en un solo lugar, en
+          lugar de gestionarlas por canales distintos.
+    \item \textbf{Coordinar}: los marketplaces existentes no ofrecen
+          gestión posterior del evento, por lo que su ahorro en esta
+          etapa es mínimo; la plataforma propuesta incorpora gestión de
+          reservas y presupuestos, y por eso el ahorro es menor que en
+          las etapas de búsqueda.
+    \item \textbf{Evaluar un cambio}: con el Gemelo Digital se ve el
+          efecto de más invitados, otra fecha o un presupuesto distinto
+          sin rehacer los cálculos a mano.
+\end{itemize}
+
+Estas cifras son un estimativo del autor, construido con supuestos, y
+no una medición: no existen datos de uso real de la plataforma ni de las
+alternativas. Deben leerse como una hipótesis a contrastar con la prueba
+comparativa propuesta como trabajo futuro (tiempo y contactos necesarios
+para armar un mismo evento con y sin la plataforma). Este beneficio no
+está incluido en el flujo de fondos, por lo que la conclusión de
+viabilidad del capítulo no depende de él.
 
 \section{Flujo de fondos proyectado}
 
@@ -279,7 +332,7 @@ precios y de costos sobre la misma estructura del escenario base.
         \midrule
         Adopción (salones/proveedores y contrataciones) & 60\,\% de la proyección base & Tabla~\ref{tab:adopcion} & 150\,\% de la proyección base \\
         Aumento del precio de suscripción a USD 15/mes & Recién en el Año 4 & En el Año 3 & Ya en el Año 2 \\
-        Adopción del complemento de \gls{ia} & 15\,\% a 50\,\% (Años 1--5) & 20\,\% a 70\,\% (Años 1--5) & 25\,\% a 80\,\% (Años 1--5) \\
+        Adopción del complemento de recomendación y simulación & 15\,\% a 50\,\% (Años 1--5) & 20\,\% a 70\,\% (Años 1--5) & 25\,\% a 80\,\% (Años 1--5) \\
         Costos operativos & 85\,\% de los costos base & Tabla~\ref{tab:costos-operativos} & 120\,\% de los costos base (más soporte y marketing) \\
         \bottomrule
     \end{tabularx}
@@ -325,7 +378,7 @@ optimista, el flujo ya es positivo desde el Año 1.
 
 Incluso en el escenario pesimista --- con seis de cada diez de los
 salones/proveedores y contrataciones previstos, precios de lanzamiento
-más prolongados y menor adopción del complemento de \gls{ia}--- el
+más prolongados y menor adopción del complemento de recomendación y simulación--- el
 \gls{van} sigue siendo positivo y la \gls{tir} supera ampliamente la
 tasa de corte del 20\,\%. Esto sugiere que la conclusión de viabilidad
 no depende de que se cumplan exactamente los supuestos más optimistas de
@@ -376,8 +429,7 @@ capacidad de inversión inicial en herramientas digitales.
     \item \textbf{Mantener el statu quo}: continuar utilizando
           herramientas independientes (redes sociales, WhatsApp,
           planillas de cálculo). Se descarta porque no resuelve la
-          fragmentación de la información ni ofrece herramientas
-          inteligentes de recomendación o simulación.
+          fragmentación de la información ni ofrece herramientas de recomendación o simulación.
     \item \textbf{Alternativa A -- Marketplace simple sin herramientas de
           gestión}: desarrollar únicamente un buscador de proveedores
           similar a BIG Fiestas o FEX Eventos. Se descarta porque no
@@ -391,7 +443,7 @@ capacidad de inversión inicial en herramientas digitales.
           servicios.
     \item \textbf{Alternativa seleccionada}: plataforma integral que
           combina marketplace, gestión comercial/operativa y
-          funcionalidades inteligentes (recomendación y Gemelo Digital),
+          funcionalidades (recomendación y Gemelo Digital),
           por ser la única que atiende de manera conjunta las
           necesidades identificadas en los tres grupos de usuarios
           (clientes, salones y proveedores).
@@ -416,6 +468,7 @@ para proveedores de menor escala.
 
 Se reitera que la cantidad de usuarios y contrataciones utilizada en
 este capítulo es una estimación preliminar basada en fuentes secundarias
-sobre el mercado de eventos en Argentina, y debe ser reemplazada por los
-datos reales relevados en las encuestas de la Fase 2 en cuanto estén
-disponibles.
+sobre el mercado de eventos en Argentina. La encuesta y las entrevistas
+realizadas confirman el interés de los usuarios, pero no miden el
+volumen de adopción, que solo podrá conocerse con un piloto con
+usuarios reales.

@@ -3,57 +3,196 @@
 
 \chapter{Detalles técnicos e implementación}\label{apx:tecnicos}
 
-\begin{guia}
-Todo lo que alguien necesita para reproducir los resultados:
-hiperparámetros exactos, identificadores y versiones de los datos,
-versiones de librerías, variables de entorno (sin secretos) y esquemas
-de base de datos. Reproducibilidad total es un marcador de excelencia.
-\end{guia}
+\section{Configuración del motor de recomendación}
 
-\section{Configuración de los modelos}
+El motor de recomendación es de reglas ponderadas: no utiliza un modelo
+entrenado, por lo que no tiene hiperparámetros ni conjuntos de datos de
+entrenamiento. Para cada salón o proveedor calcula componentes entre 0 y
+1, los combina con los pesos de la tabla~\ref{tab:pesos-recomendacion}
+y expresa el resultado como un puntaje de 0 a 100. Los pesos se definen
+en un archivo de configuración y pueden ajustarse sin modificar el
+código.
 
 \begin{table}[H]
     \centering
-    \caption{Hiperparámetros del modelo final (ejemplo de estructura)}
-    \label{tab:hiperparametros}
+    \caption{Pesos del puntaje de recomendación}
+    \label{tab:pesos-recomendacion}
     \small
-    \begin{tabular}{l l l}
+    \begin{tabular}{l l r}
         \toprule
-        \tb{Parámetro} & \tb{Valor} & \tb{Criterio de selección} \\
+        \tb{Se recomienda} & \tb{Componente} & \tb{Peso} \\
         \midrule
-        \completar{n\_estimators} & \completar{500} & \completar{búsqueda en grilla, validación cruzada 5 pliegues} \\
-        \completar{max\_depth} & \completar{8} & \completar{...} \\
+        Salones & Presupuesto & 0,40 \\
+                & Capacidad   & 0,30 \\
+                & Reseñas     & 0,30 \\
+        \midrule
+        Proveedores de servicios & Presupuesto & 0,35 \\
+                                 & Ubicación   & 0,30 \\
+                                 & Reseñas     & 0,35 \\
         \bottomrule
     \end{tabular}
 \end{table}
 
+\begin{table}[H]
+    \centering
+    \caption{Cálculo de cada componente del puntaje}
+    \label{tab:componentes-recomendacion}
+    \small
+    \begin{tabularx}{\textwidth}{l X}
+        \toprule
+        \tb{Componente} & \tb{Regla} \\
+        \midrule
+        Presupuesto & 1 si el presupuesto del evento cubre el mínimo del
+                      rango de precios; si no, disminuye en proporción a
+                      cuánto excede ese mínimo al presupuesto. \\
+        Capacidad   & 1 si la cantidad de invitados está dentro de la
+                      capacidad del salón; 0 si supera el máximo; si es
+                      menor que el mínimo, es la proporción entre ambos. \\
+        Ubicación   & 1 si la zona de cobertura del proveedor coincide
+                      con la ubicación del evento; 0,4 en caso contrario. \\
+        Reseñas     & Promedio de puntuaciones de 1 a 5 llevado a la
+                      escala de 0 a 1. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Cuando falta información de alguna de las dos partes (por ejemplo, un
+salón sin capacidad cargada o un evento sin presupuesto), el componente
+toma un valor neutro de 0,5, de modo que la falta de datos no penaliza
+la sugerencia. Cada recomendación incluye además un motivo en lenguaje
+natural construido a partir de los componentes que más influyeron.
+
 \section{Datos utilizados}
 
-\completar{Identificador, fuente, versión, fecha de descarga, licencia y
-tamaño de cada conjunto de datos.}
+El sistema no utiliza conjuntos de datos externos. El recomendador y el
+simulador operan sobre los datos cargados en la propia plataforma:
+salones, proveedores, reseñas, reservas y eventos.
 
 \section{Arquitectura de la aplicación}
 
 \subsection{Stack tecnológico}
 
-\begin{lstlisting}[caption={Dependencias principales (ejemplo)}, label={lst:dependencias}]
-python == 3.12
-scikit-learn == 1.5.0
-fastapi == 0.111.0
-postgresql == 16
+\begin{lstlisting}[caption={Dependencias principales}, label={lst:dependencias}]
+Servidor
+  PHP                       ^8.2
+  Laravel                   ^12.0
+  Laravel Sanctum           ^4.3    (tokens y roles)
+  PHPUnit                   ^11.5   (pruebas automatizadas)
+  Laravel Pint, Mockery             (formato de codigo y mocks)
+  Base de datos             SQLite (desarrollo) / MySQL (produccion)
+                            El mismo codigo corre en ambas.
+  Correo y cliente HTTP     componentes propios de Laravel
+  Mercado Pago              Checkout Pro, solo modo de prueba (sandbox),
+                            detras de la interfaz PasarelaDePago
+
+Cliente
+  React                     ^19.1
+  TypeScript                ^4.9
+  Material UI (MUI)         ^7.3 con Emotion
+  React Router              ^7.8
+  Axios                     ^1.11   (cliente HTTP)
+  Leaflet / React-Leaflet   ^1.9 / ^5.0  (mapas)
+  dnd-kit                           (arrastrar y soltar)
+  jsPDF / jspdf-autotable           (generacion de PDF)
+  Create React App          react-scripts 5
+  Jest y Testing Library            (pruebas del cliente)
+
+Herramientas
+  Git y GitHub
+  GitHub Actions            CI con tres tareas: servidor con SQLite,
+                            servidor con MySQL y cliente (tipos y build)
+  Node                      22
 \end{lstlisting}
 
 \subsection{Esquema de base de datos}
 
-\begin{lstlisting}[language=SQL, caption={Definición de tablas (ejemplo de código SQL)}, label={lst:esquema}]
-CREATE TABLE usuario (
-    id          SERIAL PRIMARY KEY,
-    correo      TEXT NOT NULL UNIQUE,
-    creado_en   TIMESTAMPTZ NOT NULL DEFAULT now()
+Se presentan las tablas centrales del marketplace, simplificadas. Cada
+salón y cada proveedor se asocian a un usuario con rol propio, lo que
+permite aislar los datos de cada negocio.
+
+\begin{lstlisting}[language=SQL, caption={Tablas centrales del marketplace (extracto simplificado)}, label={lst:esquema}]
+CREATE TABLE salones (
+    id               BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id          BIGINT NULL REFERENCES users(id),
+    nombre_comercial VARCHAR(255) NOT NULL,
+    descripcion      TEXT NULL,
+    ubicacion        VARCHAR(255) NULL,
+    capacidad_min    INT NULL,
+    capacidad_max    INT NULL,
+    rango_precio_min DECIMAL(12,2) NULL,
+    rango_precio_max DECIMAL(12,2) NULL,
+    activo           BOOLEAN NOT NULL DEFAULT TRUE,
+    verificado       BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE proveedores_servicios (
+    id               BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id          BIGINT NULL REFERENCES users(id),
+    nombre_comercial VARCHAR(255) NOT NULL,
+    categoria        ENUM('catering','fotografia','decoracion',
+                          'sonido_iluminacion','entretenimiento') NOT NULL,
+    zona_cobertura   VARCHAR(255) NULL,
+    rango_precio_min DECIMAL(12,2) NULL,
+    rango_precio_max DECIMAL(12,2) NULL,
+    activo           BOOLEAN NOT NULL DEFAULT TRUE,
+    verificado       BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE reservas (
+    id                    BIGINT PRIMARY KEY AUTO_INCREMENT,
+    evento_id             BIGINT NOT NULL REFERENCES eventos(id),
+    salon_id              BIGINT NULL REFERENCES salones(id),
+    proveedor_servicio_id BIGINT NULL REFERENCES proveedores_servicios(id),
+    estado                ENUM('solicitado','confirmado','cancelado',
+                               'completado') NOT NULL DEFAULT 'solicitado',
+    monto                 DECIMAL(12,2) NULL,
+    fecha_solicitud       DATE NULL
+);
+
+CREATE TABLE resenas (
+    id          BIGINT PRIMARY KEY AUTO_INCREMENT,
+    reserva_id  BIGINT NOT NULL UNIQUE REFERENCES reservas(id),
+    puntuacion  TINYINT NOT NULL,
+    comentario  TEXT NULL
+);
+
+CREATE TABLE simulaciones_evento (
+    id                  BIGINT PRIMARY KEY AUTO_INCREMENT,
+    evento_id           BIGINT NOT NULL REFERENCES eventos(id),
+    variables_entrada   JSON NOT NULL,
+    variables_resultado JSON NOT NULL,
+    aplicado            BOOLEAN NOT NULL DEFAULT FALSE
 );
 \end{lstlisting}
 
 \subsection{Variables de entorno}
 
-\completar{Nombre, propósito y ejemplo de valor de cada variable. Nunca
-incluir secretos reales.}
+La configuración del sistema se realiza mediante variables de entorno.
+Se listan los nombres y su propósito; los valores secretos nunca se
+incluyen en el repositorio ni en este documento.
+
+\begin{table}[H]
+    \centering
+    \caption{Variables de entorno principales}
+    \label{tab:variables-entorno}
+    \small
+    \begin{tabularx}{\textwidth}{p{4.1cm} X p{4.1cm}}
+        \toprule
+        \tb{Variable} & \tb{Propósito} & \tb{Ejemplo de valor} \\
+        \midrule
+        \texttt{APP\_ENV}   & Entorno de ejecución del servidor & \texttt{production} \\
+        \texttt{APP\_KEY}   & Clave de cifrado de la aplicación (secreta) & (no se incluye) \\
+        \texttt{APP\_DEBUG} & Muestra detalles de errores; debe estar desactivada en producción & \texttt{false} \\
+        \texttt{APP\_URL}   & Dirección pública del servidor & \texttt{https://api.ejemplo.com} \\
+        \texttt{DB\_CONNECTION} & Tipo de base de datos & \texttt{mysql} \\
+        \texttt{DB\_HOST}, \texttt{DB\_PORT}, \texttt{DB\_DATABASE}, \texttt{DB\_USERNAME} & Conexión a la base de datos & (según el entorno) \\
+        \texttt{DB\_PASSWORD} & Contraseña de la base de datos (secreta) & (no se incluye) \\
+        \texttt{FRONTEND\_URL} & Dirección del cliente web, usada en enlaces enviados por el servidor & \texttt{https://app.ejemplo.com} \\
+        \texttt{CORS\_ALLOWED\_ORIGINS} & Orígenes autorizados a consumir la \gls{api} & \texttt{https://app.ejemplo.com} \\
+        \texttt{MERCADOPAGO\_ACCESS\_TOKEN} & Credencial de la cuenta vendedora de prueba de Mercado Pago (secreta) & (no se incluye) \\
+        \texttt{MERCADOPAGO\_WEBHOOK\_SECRET} & Clave para validar los avisos de pago de Mercado Pago (secreta) & (no se incluye) \\
+        \texttt{PAGOS\_PORCENTAJE\_SENA} & Porcentaje del monto de la reserva que se cobra como seña & \texttt{30} \\
+        \texttt{REACT\_APP\_API\_URL} & Dirección de la \gls{api} que usa el cliente web & \texttt{https://api.ejemplo.com/api} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}

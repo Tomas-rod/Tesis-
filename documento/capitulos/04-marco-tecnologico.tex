@@ -5,31 +5,6 @@
 
 \chapter{Marco tecnológico}\label{cap:marco-tecnologico}
 
-\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
-Documenta el \emph{cómo}. No es un manual de uso: es la justificación
-de cada elección tecnológica. Regla: nada ``porque sí''.
-\begin{enumerate}
-    \item \textbf{Arquitectura}: diagrama con componentes y conexiones,
-          responsabilidad y tecnología de cada uno, flujo de datos y
-          justificación del estilo arquitectónico con alternativas
-          evaluadas \citep{sommerville2016}.
-    \item \textbf{Prototipo o \gls{g:mvp}}: cuál es y por qué; alcance
-          implementado vs.\ simulado; capturas o enlace; cómo se probó.
-    \item \textbf{Stack}: por tecnología, nombre, versión, capa, por qué
-          (madurez, comunidad, costo, conocimiento del equipo) y qué
-          alternativas se descartaron.
-    \item \textbf{Infraestructura y base de datos}: dónde se aloja cada
-          componente, escalabilidad, costos (enlazados al
-          capítulo~\ref{cap:economica}), motor y modelo de datos.
-    \item \textbf{Diseño y \gls{ux}}: quién lo usa, mockups, decisiones de
-          diseño y \textbf{cómo se validó con usuarios} (la cátedra lo marca
-          como importante; cuestionario en el apéndice~\ref{apx:encuesta}).
-    \item \textbf{Seguridad, calidad y despliegue}: autenticación, control
-          de acceso, cifrado, plan de pruebas, repositorio, \gls{cicd} y
-          monitoreo.
-\end{enumerate}
-\end{guia}
-
 \section{Introducción}
 
 Este capítulo explica cómo se lleva la propuesta planteada en los
@@ -39,7 +14,7 @@ la primera etapa fue un sistema de gestión aplicado a Rodríguez
 Catering, que permite administrar clientes, eventos, presupuestos,
 contratos, productos y proveedores; sobre esa misma base se incorporaron
 después el esquema multi-tenant, el marketplace, el sistema de
-recomendación mediante \gls{ia} y el Gemelo Digital del evento.
+recomendación basado en reglas ponderadas y el Gemelo Digital del evento.
 
 \section{Alcance del prototipo}\label{sec:alcance-prototipo}
 
@@ -75,10 +50,10 @@ También se desarrolló un portal destinado a los clientes, que les permite
 consultar el estado de un presupuesto o pedido sin comunicarse
 constantemente con la empresa.
 
-Quedan pendientes los pagos en sandbox (todavía no se eligió pasarela
-entre Mercado Pago y Stripe test mode) y el despliegue público (todavía
-no hay cuentas de hosting creadas); ambos se dejaron deliberadamente para
-el final, ya que no condicionan la validación funcional del resto de la
+Los pagos se integraron en modo de prueba (sandbox) con Mercado Pago, la
+pasarela elegida. Queda pendiente el despliegue público (todavía no hay
+cuentas de hosting creadas), que se dejó deliberadamente para el final,
+ya que no condiciona la validación funcional del resto de la
 plataforma.
 
 \section{Arquitectura del sistema}
@@ -179,24 +154,28 @@ Tal como pide la cátedra, se detalla a continuación, para cada
 tecnología, la versión utilizada, las alternativas consideradas y el
 motivo por el cual fueron descartadas.
 
-\begin{table}[H]
-    \centering
+\small
+\begin{xltabular}{\textwidth}{p{1.9cm} p{1.9cm} p{2.2cm} p{2.4cm} L}
     \caption{Stack tecnológico y alternativas evaluadas}
-    \label{tab:stack}
-    \small
-    \begin{tabularx}{\textwidth}{l l L L L}
-        \toprule
-        \tb{Tecnología} & \tb{Versión} & \tb{Uso} & \tb{Alternativas evaluadas} & \tb{Por qué se descartaron} \\
-        \midrule
-        React & 18.x & Frontend (panel interno y portal de clientes) & Vue.js, Angular & Vue se descartó por tener menor disponibilidad de componentes que React; Angular se descartó por su curva de aprendizaje más pronunciada y por ser más pesado de lo necesario para el alcance actual. \\
-        TypeScript & 5.x & Tipado estático sobre JavaScript & JavaScript puro & Se descartó JavaScript puro porque, con muchas entidades relacionadas (clientes, eventos, presupuestos, productos), el tipado estático reduce errores en desarrollo y facilita el mantenimiento. \\
-        Material UI & 5.x & Componentes visuales & Tailwind CSS, Chakra UI & Tailwind hubiera exigido construir los componentes desde más abajo; Chakra UI tenía comunidad y documentación más acotadas al iniciar el proyecto. \\
-        Laravel (PHP) & 10.x & Backend / API REST & Node.js con Express, Django (Python) & Node.js se descartó porque Laravel integra autenticación, migraciones y ORM que en Node se debían incorporar por separado; Django se descartó por menor familiaridad previa con Python. \\
-        Eloquent (ORM) & incluido en Laravel 10.x & Mapeo objeto-relacional & Query Builder sin ORM, Doctrine & Eloquent simplifica la definición de relaciones entre entidades; Doctrine no es el ORM nativo de Laravel y añadía complejidad de integración. \\
+    \label{tab:stack} \\
+    \toprule
+    \tb{Tecnología} & \tb{Versión} & \tb{Uso} & \tb{Alternativas evaluadas} & \tb{Por qué se descartaron} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \tb{Tecnología} & \tb{Versión} & \tb{Uso} & \tb{Alternativas evaluadas} & \tb{Por qué se descartaron} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endfoot
+        React & 19.x & Frontend (panel interno y portal de clientes) & Vue.js, Angular & Vue se descartó por tener menor disponibilidad de componentes que React; Angular se descartó por su curva de aprendizaje más pronunciada y por ser más pesado de lo necesario para el alcance actual. \\
+        TypeScript & 4.9 & Tipado estático sobre JavaScript & JavaScript puro & Se descartó JavaScript puro porque, con muchas entidades relacionadas (clientes, eventos, presupuestos, productos), el tipado estático reduce errores en desarrollo y facilita el mantenimiento. \\
+        Material UI & 7.x & Componentes visuales & Tailwind CSS, Chakra UI & Tailwind hubiera exigido construir los componentes desde más abajo; Chakra UI tenía comunidad y documentación más acotadas al iniciar el proyecto. \\
+        Laravel (PHP) & 12.x & Backend / API REST & Node.js con Express, Django (Python) & Node.js se descartó porque Laravel integra autenticación, migraciones y ORM que en Node se debían incorporar por separado; Django se descartó por menor familiaridad previa con Python. \\
+        Eloquent (ORM) & incluido en Laravel 12.x & Mapeo objeto-relacional & Query Builder sin ORM, Doctrine & Eloquent simplifica la definición de relaciones entre entidades; Doctrine no es el ORM nativo de Laravel y añadía complejidad de integración. \\
         MySQL / SQLite & MySQL 8.x (prod.) / SQLite (dev.) & Persistencia de datos & PostgreSQL, MongoDB (NoSQL) & PostgreSQL no aportaba ventajas relevantes frente a MySQL para este volumen de datos; MongoDB se descartó porque la información es altamente relacional. \\
-        \bottomrule
-    \end{tabularx}
-\end{table}
+\end{xltabular}
+\normalsize
 
 \section{Infraestructura y alojamiento}
 
@@ -349,13 +328,13 @@ había previsto en la sección~\ref{sec:alcance-prototipo}.
 
 \section{Limitaciones actuales y próximos pasos}
 
-Quedan dos componentes pendientes, deliberadamente postergados al final
-del proyecto porque no condicionan la validación funcional del resto de
-la plataforma:
+Los pagos se integraron en modo de prueba (sandbox) con Mercado Pago,
+detrás de una interfaz que permite cambiar de pasarela; el paso a cobros
+reales queda pendiente. Además queda pendiente un componente,
+deliberadamente postergado al final del proyecto porque no condiciona la
+validación funcional del resto de la plataforma:
 
 \begin{itemize}
-    \item \textbf{Pagos en sandbox}: todavía no se eligió la pasarela
-          (Mercado Pago o Stripe test mode).
     \item \textbf{Despliegue público}: todavía no existen las cuentas de
           hosting; el sistema corre únicamente en el entorno local de
           desarrollo.

@@ -6,49 +6,332 @@
 
 \chapter{Implicancias, conclusiones y recomendaciones}\label{cap:conclusiones}
 
-\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
+Este capítulo presenta las implicancias del trabajo, sus conclusiones
+(respuesta a la pregunta de investigación y a la hipótesis, grado de
+cumplimiento de los objetivos, interpretación de los resultados y
+limitaciones), los aportes de la tesis, las recomendaciones según el
+destinatario y las futuras líneas de investigación.
+
+\section{Implicancias}
+
+\subsection{Innovación y tecnología}
+
+La arquitectura multi-tenant demostró que un mismo sistema puede servir a
+tres tipos de usuario con reglas de acceso distintas sin duplicar la base
+de datos ni el código. El motor de recomendación y el simulador se
+construyeron como módulos propios, separados de la lógica de negocio y
+apoyados en un modelo de datos común, sin exigir grandes volúmenes de
+datos ni infraestructura costosa; esa separación deja abierta la
+posibilidad de reemplazar las reglas ponderadas por un modelo entrenado
+cuando existan datos de uso, sin reescribir el resto del sistema.
+Respecto de los procesos existentes, la solicitud de contratación dentro
+de la plataforma reemplaza el intercambio por WhatsApp, y la
+autenticación con roles reemplaza al mecanismo provisorio del prototipo
+original. Partir de un prototipo real de gestión, el de Rodríguez
+Catering, permitió construir sobre procesos que ya se usaban en lugar de
+diseñar el sistema en abstracto.
+
+\subsection{Relevancia social y económica}
+
+\textbf{Social.} Para quien organiza un evento, concentrar la búsqueda, la
+comparación y la contratación en un solo lugar reduce el esfuerzo de
+coordinar varios canales y la dependencia de intermediarios. Para los
+salones y proveedores pequeños, significa acceder a herramientas de
+gestión y a visibilidad comercial que habitualmente solo están al
+alcance de empresas más grandes, sin una inversión propia en marketing.
+Reunir precios y disponibilidad en un solo lugar también reduce la
+asimetría de información de quien contrata por primera vez un servicio
+que no conoce.
+
+\textbf{Económica.} El modelo combina una suscripción para salones y
+proveedores con una comisión del 5\,\% por contratación. En el escenario
+base se obtiene un valor actual neto de aproximadamente USD~77.800, una
+tasa interna de retorno cercana al 122\,\% y un período de repago de
+alrededor de 2,1 años; en el escenario pesimista, el valor actual neto
+sigue siendo positivo (USD~33.700). Estos valores son estimaciones
+preliminares que dependen de supuestos de adopción y de la tasa de
+descuento, y deben leerse como evidencia de viabilidad potencial, no
+como una proyección garantizada. El bajo monto de inversión inicial se
+explica en gran parte porque el desarrollo es trabajo propio del
+tesista; si se incorporara un costo de oportunidad por ese tiempo, los
+indicadores bajarían sin modificar la conclusión de viabilidad. La
+sostenibilidad depende además de alcanzar una masa crítica de salones y
+proveedores que haga atractivo el marketplace para los clientes, y
+viceversa, el problema típico de las plataformas de dos lados.
+
+\section{Conclusiones}
+
+\subsection{Hallazgos clave y respuesta a la pregunta de investigación}
+
+La pregunta de investigación indagaba si resulta viable, técnica y
+económicamente, integrar en una misma plataforma un marketplace de
+servicios, un sistema de recomendación basado en reglas ponderadas y un
+Gemelo Digital del evento, y si esa integración despierta interés en
+clientes, salones y proveedores, frente al uso de herramientas
+fragmentadas. La evidencia reunida permite responder en forma
+afirmativa: se verificó la factibilidad técnica y económica de la
+integración y el interés de los usuarios relevados. No se midió, en
+cambio, la mejora de eficiencia en el uso real, que queda como trabajo
+futuro.
+
+En cuanto a la hipótesis, que sostenía que esa integración hace más
+simple y eficiente la organización de eventos y que el Gemelo Digital
+permite anticipar situaciones y evaluar el impacto de las decisiones, la
+respuesta es \textbf{afirmativa, con matices}. Lo que sí se pudo verificar
+es lo siguiente:
+
+\begin{itemize}
+    \item \textbf{Es técnicamente viable integrar las tres capas.} El
+          marketplace, el motor de recomendación y el Gemelo Digital
+          funcionan en una misma plataforma, sobre una base de datos
+          común y con separación de datos entre salones, proveedores y
+          clientes. La suite de pruebas automatizadas (410 pruebas, de las
+          cuales 409 pasaron en la última ejecución) verifica, entre otras cosas, que un cliente no puede
+          operar sobre el evento de otro, que un salón ocupado en la
+          fecha no se recomienda y que la simulación detecta tanto el
+          exceso de capacidad como el conflicto de fechas.
+    \item \textbf{Existe una necesidad real y un interés declarado.} Según
+          la encuesta, quienes organizan un evento hoy recurren a varios
+          canales a la vez (redes sociales, recomendaciones de conocidos y
+          WhatsApp), el 46,7\,\% tarda entre una y cuatro semanas en buscar
+          y comparar proveedores y un 28,9\,\% más de un mes, y el 91,1\,\%
+          usaría o probablemente usaría una plataforma que reúna todo. El
+          93,3\,\% valoró útil la recomendación asistida y el 97,8\,\% la
+          simulación del evento antes de confirmarlo.
+    \item \textbf{El modelo es económicamente viable bajo los supuestos
+          planteados.} En los tres escenarios analizados el valor actual
+          neto es positivo y la tasa interna de retorno supera la tasa de
+          corte del 20\,\%, incluso con un 60\,\% de la adopción prevista.
+\end{itemize}
+
+El matiz es que \textbf{la mejora de eficiencia frente al uso de
+herramientas fragmentadas no se midió de forma directa}. No se realizó un
+experimento comparativo (por ejemplo, el tiempo que le lleva a una
+persona organizar un mismo evento con la plataforma y sin ella), por lo
+que la hipótesis queda respaldada por la viabilidad técnica, la
+necesidad relevada y el interés declarado, pero no confirmada con
+mediciones de uso real. Tampoco se contrastó el aporte del Gemelo Digital
+con eventos reales ya realizados, por lo que su capacidad de anticipar
+problemas debe leerse como preliminar.
+
+\subsection{Cumplimiento de los objetivos}
+
+La tabla siguiente retoma cada objetivo específico y resume en qué
+medida se alcanzó y con qué evidencia.
+
+\small
+\begin{xltabular}{\textwidth}{p{3.1cm} X p{2.1cm} X}
+    \caption{Grado de cumplimiento de los objetivos específicos}
+    \label{tab:cumplimiento} \\
+    \toprule
+    \tb{Objetivo} & \tb{Evidencia} & \tb{Grado} & \tb{Observación} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \tb{Objetivo} & \tb{Evidencia} & \tb{Grado} & \tb{Observación} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endfoot
+    OE-1: buscar, comparar y contratar desde un mismo lugar & RF-02 y RF-03; pruebas del módulo de marketplace & Alcanzado, con matices & Búsqueda pública, ficha y solicitud de contratación funcionan; el cobro de seña y saldo funciona con Mercado Pago solo en modo de prueba \\
+    OE-2: herramientas de gestión para salones y proveedores & RF-06; módulos de clientes, presupuestos y contratos heredados del prototipo de Rodríguez Catering; pruebas de aislamiento entre negocios y de pagos & Alcanzado, con matices & Cada tenant administra solo sus reservas; la gestión de cobros está integrada a Mercado Pago solo en modo de prueba, no en producción \\
+    OE-3: gestionar la disponibilidad de servicios y recursos & RF-02 y RF-04 (filtro por disponibilidad); detección de conflicto de fechas en el Gemelo Digital & Alcanzado & La disponibilidad se evalúa por fecha \\
+    OE-4: herramientas de recomendación & RF-04 y RNF-02; 8 pruebas del módulo de recomendación & Alcanzado, con matices & Es un conjunto de reglas ponderadas con motivo explicable, no un modelo entrenado; no se validó con usuarios reales \\
+    OE-5: Gemelo Digital para analizar escenarios & RF-05; 9 pruebas del módulo de Gemelo Digital & Alcanzado & Simula invitados, fecha y presupuesto sobre el evento propio, sin alterarlo, y permite aplicar el escenario elegido \\
+    OE-6: información e indicadores para decidir & Motivo de cada recomendación; costo estimado y avisos de la simulación & Parcial & Hay información para decidir a nivel de evento (motivo de la recomendación, costo estimado y avisos); falta evaluar si alcanza para salones y proveedores \\
+\end{xltabular}
+\normalsize
+
+De los seis objetivos, cinco se alcanzaron (tres de ellos con matices) y
+uno se alcanzó en forma parcial. En ningún caso se trata de
+funcionalidades ausentes: las diferencias están en lo que depende de
+terceros (el paso de los pagos del modo de prueba a producción), de
+datos de uso que todavía no existen (la validación de la recomendación)
+o de lo que falta evaluar con usuarios reales (los indicadores para
+salones y proveedores).
+
+\subsection{Interpretación de los resultados}
+
+\textbf{Significado en el contexto del estudio.} Solo el 2,2\,\% de
+quienes respondieron la encuesta usó un marketplace existente, aunque la
+búsqueda de proveedores les lleva semanas y varios canales. Esto sugiere
+que la oportunidad no está en la falta de plataformas, sino en la baja
+adopción de las existentes y en el esfuerzo de comparar y coordinar. El
+interés declarado en la recomendación y en la simulación (93,3\,\% y
+97,8\,\%) superó al interés en la plataforma unificada (91,1\,\%), lo que
+sugiere que el componente inteligente forma parte de lo que motivaría la
+adopción.
+
+\subsection{Limitaciones}
+
+\subsubsection{Técnicas}
+
+El motor de recomendación se basa en reglas ponderadas y no aprende de
+los datos, por lo que su calidad depende de que los pesos elegidos sean
+razonables. Las pruebas automatizadas verifican el comportamiento
+esperado pero no garantizan haber previsto todos los casos. No se midió el
+rendimiento con carga real ni se hicieron pruebas de concurrencia,
+porque el sistema todavía no está desplegado. Los pagos solo se
+probaron en el modo de prueba (sandbox) de Mercado Pago, no con cobros
+reales.
+
+\subsubsection{De datos}
+
+La plataforma no cuenta todavía con historial de uso real: las reseñas,
+las reservas y las preferencias que alimentarían una recomendación más
+precisa recién existirán una vez que haya usuarios. El prototipo de
+gestión se construyó a partir de un único caso real, el de Rodríguez
+Catering, por lo que no es posible generalizar su desempeño a otros
+tipos de proveedor. Las estimaciones de adopción del análisis económico
+provienen de fuentes secundarias y de supuestos propios, y no de datos
+observados.
+
+\subsubsection{De validación}
+
+La encuesta se distribuyó por conveniencia, a través de redes sociales y
+contactos del autor, por lo que sus resultados se interpretan como una
+validación exploratoria de la dirección del proyecto y no como una
+medición representativa de la población. Se realizaron las tres
+entrevistas previstas a especialistas, aplicadas por escrito y no en
+vivo. No se hizo una prueba de usabilidad guiada con usuarios
+reales sobre el prototipo en funcionamiento, y los resultados fueron
+evaluados por el propio desarrollador.
+
+\subsubsection{De mercado}
+
+Los resultados corresponden al mercado argentino, con foco en Buenos
+Aires y el Gran Buenos Aires; no pueden extrapolarse sin más a otras
+regiones. El análisis económico asume un contexto de inflación y tipo de
+cambio que puede variar, y no se evaluó la reacción de las plataformas ya
+existentes ni la disposición real de los salones y proveedores a pagar
+la suscripción.
+
+\section{Aportes de la tesis}
+
+\subsection{Contribuciones originales}
+
+Dentro de las plataformas relevadas, ninguna combina un marketplace de
+servicios para eventos, herramientas de gestión para salones y
+proveedores, un motor de recomendación con motivo explicable y un
+simulador de escenarios del evento. El trabajo aporta un diseño concreto
+y verificable de esa combinación, con una arquitectura multi-tenant que
+mantiene separados los datos de cada actor, y una implementación de
+referencia con sus pruebas automatizadas. Su contribución no es un
+resultado experimental concluyente, sino un punto de partida verificable:
+delimita qué es técnicamente viable, qué supuestos económicos sostienen el
+modelo y qué datos habría que reunir para validarlo.
+
+\subsection{Beneficios para el campo de estudio}
+
+Para la ingeniería de sistemas aplicada a la gestión de eventos, el
+trabajo deja una referencia de arquitectura reutilizable, un análisis de
+factibilidad con tres escenarios que puede adaptarse a otros marketplaces
+de servicios, y un relevamiento de necesidades de clientes, salones y
+proveedores del mercado local, con su instrumento (cuestionario y guías de
+entrevista) disponible en los apéndices.
+
+\subsection{Impacto en la comunidad académica}
+
+A la fecha no hay publicaciones ni participaciones en conferencias
+derivadas del trabajo. El documento y, una vez definido el repositorio
+oficial, el código quedan como material de consulta para futuros
+proyectos de la cátedra.
+
+\subsection{Aplicaciones futuras}
+
+El motor de reglas queda como línea base contra la cual comparar un modelo
+entrenado, y el instrumento de la encuesta puede reutilizarse con una
+muestra más amplia. No se identificaron, en cambio, implicancias para
+políticas o regulaciones del área más allá de la protección de datos
+personales, tratada en las recomendaciones.
+
+\section{Recomendaciones}
+
+\subsection{Para la práctica profesional}
+
 \begin{enumerate}
-    \item \textbf{Respuesta explícita a la hipótesis} del
-          capítulo~\ref{cap:introduccion}, con matices y contraejemplos
-          si corresponde (``afirmativa, con matices'' es una respuesta
-          válida; ``se cumplieron todos los objetivos'' sin evidencia no).
-    \item \textbf{Implicancias}: técnicas, sociales y económicas.
-    \item \textbf{Limitaciones honestas}, por categoría (técnicas, de datos,
-          de validación, de mercado), sin maquillaje. Declarar como
-          preliminar lo que es preliminar.
-    \item \textbf{Recomendaciones} accionables y \textbf{trabajo futuro}.
-    \item \textbf{Contribución al conocimiento}: qué sabe ahora la disciplina
-          que antes no sabía.
+    \item \textbf{Desplegar un piloto acotado} con un número pequeño de
+          salones y proveedores reales antes de pensar en escala. Es la
+          única forma de obtener los datos de uso que hoy faltan y de
+          medir el rendimiento bajo carga real.
+    \item \textbf{Medir la eficiencia frente a la alternativa fragmentada}
+          con un estudio comparativo simple: tiempo y cantidad de
+          contactos necesarios para armar un mismo evento con y sin la
+          plataforma. Es la medición que permitiría responder del todo la
+          hipótesis.
+    \item \textbf{Realizar una prueba de usabilidad guiada} con entre tres
+          y cinco usuarios de cada tipo (cliente, salón, proveedor) sobre
+          el prototipo.
+    \item \textbf{Pasar los pagos del modo de prueba a producción}
+          recién cuando el piloto lo justifique, y reforzar seguridad,
+          facturación y escalabilidad antes de un lanzamiento comercial.
+    \item \textbf{Decidir de antemano quién mantiene el sistema} después
+          de la defensa, y dejar el repositorio y la documentación en
+          condiciones de ser retomados por un tercero.
 \end{enumerate}
-Cierra el arco narrativo: cada objetivo específico se retoma y se
-indica en qué medida se alcanzó, con referencia a la sección que lo
-demuestra.
-\end{guia}
 
-\completar{Desarrollo del capítulo.}
+\subsection{Para investigadores futuros}
 
-\section{\completar{Nombre de la sección}}
+Conviene repetir la encuesta con un muestreo probabilístico y en otras
+regiones, y diseñar desde el inicio un estudio comparativo entre la
+plataforma y las herramientas fragmentadas, con indicadores definidos de
+antemano. Si se incorpora un modelo de recomendación entrenado, debe
+evaluarse con métricas fijadas antes de ver los resultados y contra la
+línea base de reglas ya implementada.
 
-\begin{ejemplo}[Ejemplo: forma de la respuesta a la hipótesis]
-La hipótesis planteada en el capítulo~\ref{cap:introduccion} se responde
-de manera \completar{afirmativa, con matices}: el sistema alcanzó
-\completar{métrica} sobre el umbral definido en el
-capítulo~\ref{cap:metodologia}, aunque \completar{limitación concreta}.
-\end{ejemplo}
+\subsection{Para instituciones y políticas públicas}
 
-\completar{Texto.}
+La plataforma administra datos personales de clientes, salones y
+proveedores, por lo que, antes de operar con usuarios reales, conviene
+revisar con asesoramiento legal las obligaciones que impone la Ley 25.326
+de Protección de Datos Personales. Para la institución académica, se
+recomienda conservar el repositorio y la documentación como caso
+reutilizable. No se formulan recomendaciones de política pública, porque
+el alcance del trabajo no las respalda.
 
-\begin{table}[H]
-    \centering
-    \caption{Grado de cumplimiento de los objetivos específicos (ejemplo de estructura)}
-    \label{tab:cumplimiento}
-    \small
-    \begin{tabularx}{\textwidth}{l L l L}
-        \toprule
-        \tb{Objetivo} & \tb{Evidencia} & \tb{Grado} & \tb{Observación} \\
-        \midrule
-        OE-1 & Capítulo~\ref{cap:resultados} & Alcanzado & \completar{...} \\
-        OE-2 & \completar{...} & Parcial & \completar{...} \\
-        \bottomrule
-    \end{tabularx}
-\end{table}
+\subsection{Para el desarrollo tecnológico}
+
+Reemplazar las reglas ponderadas por un modelo entrenado recién cuando
+haya historial de reservas y reseñas suficiente, manteniendo el diseño
+modular que permite hacerlo sin reescribir el sistema. Pasar la
+pasarela de pagos (Mercado Pago, hoy en modo de prueba) a producción,
+evaluar otros medios de cobro habituales del mercado local y realizar
+pruebas de carga una vez que exista un entorno desplegado.
+
+\section{Futuras líneas de investigación}
+
+\textbf{Expansión del estudio actual.} Completar las entrevistas
+pendientes, ampliar la cantidad de entrevistados de cada tipo de actor y
+la muestra de la encuesta, y observar el uso de la plataforma con
+usuarios reales durante un período de varios meses.
+
+\textbf{Nuevas áreas de exploración.} Estudiar desde la economía de
+plataformas cómo alcanzar la masa crítica inicial de salones y proveedores
+y qué estrategia de precios por lado resulta más conveniente; y, desde la
+interacción persona--computadora, si el motivo explicable de cada
+recomendación aumenta la confianza de los usuarios.
+
+\textbf{Mejoras metodológicas.} Validar las predicciones del Gemelo
+Digital comparándolas con la ejecución de eventos reales y ajustando sus
+parámetros; evaluar el recomendador con métricas de precisión definidas de
+antemano; y complementar las pruebas automatizadas con pruebas de carga y
+de usabilidad.
+
+\textbf{Aplicaciones prácticas y tecnológicas.} Ampliar el alcance a
+otros tipos de proveedores y de eventos, a otras ciudades y a una
+aplicación móvil; sumar una distribución de mesas sobre un plano a escala
+del salón, sugerida en una de las entrevistas, y la simulación de costos
+por proveedor.
+
+\section{Cierre}
+
+La organización de eventos se hace hoy con herramientas dispersas, y el
+trabajo muestra que es viable concentrarla en una única plataforma. La
+plataforma existe, funciona sobre los casos para los que fue probada y
+responde a una necesidad que los usuarios relevados reconocen. La
+hipótesis se considera respaldada en lo técnico y lo económico, y abierta
+en lo que respecta a la mejora medida de eficiencia: lo que queda por
+demostrar no es si se puede construir, sino si, usada por personas
+reales, efectivamente hace más simple y más eficiente la organización de
+un evento. Responder esa pregunta es el paso siguiente natural de este
+trabajo.

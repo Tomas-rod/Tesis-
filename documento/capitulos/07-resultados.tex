@@ -6,33 +6,11 @@
 
 \chapter{Presentación de resultados}\label{cap:resultados}
 
-\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
-\begin{enumerate}
-    \item \textbf{Requerimientos formales}: \gls{rf} y \gls{rnf} con ID,
-          descripción, prioridad y criterio de aceptación medible,
-          trazados a los indicadores del capítulo~\ref{cap:metodologia}.
-    \item \textbf{Evidencia de implementación}: capturas reales del sistema
-          funcionando, enlaces al repositorio (anexo~\ref{anx:repositorios})
-          y al despliegue.
-    \item \textbf{Resultados cuantitativos honestos}: diseño experimental,
-          métricas, matrices de confusión o su equivalente en el dominio,
-          incluyendo lo que salió mal y su análisis. Reportar también lo
-          malo y argumentarlo vale más que esconderlo. Hiperparámetros y
-          versiones en el apéndice~\ref{apx:tecnicos}.
-    \item \textbf{Validación con usuarios y expertos}: idealmente
-          triangulada (métricas técnicas, encuesta, entrevista) y
-          traducida a decisiones de diseño concretas. Instrumentos en los
-          apéndices \ref{apx:encuesta} y \ref{apx:entrevista}.
-\end{enumerate}
-El sistema tiene que existir y andar: la entrega final incluye el
-proyecto funcional.
-\end{guia}
-
 Este capítulo presenta los resultados obtenidos hasta el momento sobre el
-prototipo descripto en el capítulo~\ref{cap:marco-tecnologico}: los
-requerimientos definidos, la evidencia de que el sistema funciona, los
-resultados de las pruebas automatizadas y la traducción de las
-entrevistas y la encuesta en decisiones de diseño concretas.
+prototipo ya descripto: los requerimientos definidos, la evidencia de
+que el sistema funciona, los resultados de las pruebas automatizadas y
+la traducción de las entrevistas y la encuesta en decisiones de diseño
+concretas.
 
 \section{Requerimientos}
 
@@ -67,7 +45,7 @@ entrevistas y la encuesta en decisiones de diseño concretas.
         \midrule
         RNF-01 & Seguridad de acceso & Los datos de un cliente, salón o proveedor no deben quedar expuestos a otros tenants ni a otros clientes & Alta & 0 casos donde un usuario acceda a datos ajenos en la suite de pruebas (verificado, sección~\ref{sec:pruebas}) \\
         RNF-02 & Explicabilidad de la recomendación & Cada recomendación debe venir acompañada de un motivo legible & Media & 100\,\% de las recomendaciones devuelven un campo \texttt{motivo} no vacío \\
-        RNF-03 & Rendimiento & Tiempo de respuesta de las consultas principales & Media & Todavía no medido con carga real; pendiente para cuando haya despliegue (capítulo~\ref{cap:riesgos}, R-02) \\
+        RNF-03 & Rendimiento & Tiempo de respuesta de las consultas principales & Media & Todavía no medido con carga real; pendiente para cuando haya despliegue \\
         RNF-04 & Usabilidad & Facilidad de uso percibida por los tres tipos de usuario & Alta & Validada de forma exploratoria por encuesta y entrevistas (sección~\ref{sec:validacion}); falta prueba de usabilidad guiada sobre el prototipo \\
         \bottomrule
     \end{tabularx}
@@ -101,26 +79,37 @@ pruebas automatizadas de comportamiento. Lo mismo aplica al Gemelo
 Digital.
 
 Se ejecutó la suite de pruebas de integración
-(\texttt{php artisan test}) sobre los cuatro módulos nuevos:
+(\texttt{php artisan test}) sobre los módulos del sistema:
 
 \begin{table}[H]
     \centering
     \caption{Resultado de la suite de pruebas automatizadas}
     \label{tab:tests}
     \small
-    \begin{tabular}{l r r}
+    \begin{tabularx}{\textwidth}{L r r}
         \toprule
         \tb{Módulo} & \tb{Pruebas} & \tb{Resultado} \\
         \midrule
-        Autenticación y roles (\texttt{AuthTest}) & 8 & 8 aprobadas \\
-        Marketplace (\texttt{MarketplaceTest}) & 9 & 9 aprobadas \\
-        Motor de recomendación (\texttt{RecomendacionTest}) & 8 & 8 aprobadas \\
-        Gemelo Digital (\texttt{GemeloDigitalTest}) & 9 & 9 aprobadas \\
+        Autenticación y roles (\texttt{AuthTest}, \texttt{RecuperarPasswordTest}) & 20 & 20 aprobadas \\
+        Aislamiento entre negocios (\texttt{AislamientoTenantTest}) & 18 & 18 aprobadas \\
+        Alta y panel de cada negocio (\texttt{NegocioTest}) & 9 & 9 aprobadas \\
+        Marketplace, favoritos y paquetes (\texttt{MarketplaceTest}, \texttt{FavoritosTest}, \texttt{PaqueteTest}) & 30 & 30 aprobadas \\
+        Calendario y disponibilidad (\texttt{CalendarioTest}) & 23 & 22 aprobadas, 1 no aprobada \\
+        Cotizaciones y conversación con el cliente (\texttt{CotizacionTest}, \texttt{ConversacionSolicitudTest}) & 31 & 31 aprobadas \\
+        Motor de recomendación y combinaciones (\texttt{RecomendacionTest}, \texttt{CombinacionesTest}) & 36 & 36 aprobadas \\
+        Gemelo Digital (\texttt{GemeloDigitalTest}, \texttt{GemeloAmpliadoTest}) & 49 & 49 aprobadas \\
+        Organización del evento y espacio compartido (\texttt{OrganizacionEventoTest}, \texttt{EspacioEventoTest}) & 67 & 67 aprobadas \\
+        Avisos y recordatorios (\texttt{AvisosTest}) & 18 & 18 aprobadas \\
+        Pagos con Mercado Pago en modo de prueba (\texttt{PagosTest}) & 46 & 46 aprobadas \\
+        Administración de la plataforma (\texttt{PlataformaTest}) & 44 & 44 aprobadas \\
+        Datos de demostración y ejemplo (\texttt{DemoTest}, \texttt{ExampleTest}) & 19 & 19 aprobadas \\
         \midrule
-        \tb{Total} & \tb{34} & \tb{34 aprobadas (63 aserciones)} \\
+        \tb{Total} & \tb{410} & \tb{409 aprobadas (1.856 aserciones)} \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
+
+En la última ejecución pasaron 409 de las 410 pruebas. La que no pasó (\texttt{CalendarioTest}, calendario del mes) queda pendiente de revisión.
 
 Estas pruebas verifican, entre otras cosas, que un cliente no pueda
 solicitar, simular ni reseñar sobre un evento ajeno, que un tenant
@@ -134,16 +123,15 @@ posibles.
 Lo que todavía no está probado, y queda pendiente: pruebas de carga o
 concurrencia (RNF-03), pruebas de usabilidad guiada con usuarios reales
 sobre el prototipo (más allá de la encuesta y las entrevistas), y
-pruebas end-to-end del flujo completo de pagos, ya que esa
-funcionalidad todavía no está integrada.
+pruebas del flujo de pagos con cobros reales, ya que la integración
+con Mercado Pago solo se probó en modo de prueba (sandbox).
 
 \section{Validación con usuarios y expertos}\label{sec:validacion}
 
 Los resultados se triangularon con la encuesta a 45 potenciales usuarios
-y las dos entrevistas a especialistas del sector, ya presentadas en el
-capítulo~\ref{cap:marco-teorico}. La tabla siguiente traduce los
-hallazgos más relevantes de esa validación en decisiones concretas sobre
-el sistema.
+y las tres entrevistas a especialistas del sector, ya presentadas. La
+tabla siguiente traduce los hallazgos más relevantes de esa validación
+en decisiones concretas sobre el sistema.
 
 \begin{table}[H]
     \centering
@@ -156,14 +144,14 @@ el sistema.
         \midrule
         Encuesta (n=45) & 97,8\,\% valoró útil poder simular el evento antes de confirmarlo & Priorizar el Gemelo Digital como funcionalidad central, no como agregado & Implementado \\
         Encuesta (n=45) & 93,3\,\% valoró útil la recomendación automática de proveedores & Diseñar el motor de recomendación con motivo explicable desde la primera versión (RNF-02) & Implementado \\
-        Encuesta (n=45) & Solo 2,2\,\% usa hoy un marketplace existente para organizar su evento & Reforzar en el capítulo~\ref{cap:marco-teorico} que la brecha de adopción, no la falta de plataformas, es la oportunidad del proyecto & Incorporado al análisis \\
-        Entrevista, dueño de salón & Los pagos son la información más difícil de mantener actualizada & Diseñar el modelo de reservas con estado y monto desde el inicio, aunque el cobro todavía se gestione manualmente (capítulo~\ref{cap:riesgos}, R-04) & Parcial \\
+        Encuesta (n=45) & Solo 2,2\,\% usa hoy un marketplace existente para organizar su evento & Reforzar que la brecha de adopción, no la falta de plataformas, es la oportunidad del proyecto & Incorporado al análisis \\
+        Entrevista, dueño de salón & Los pagos son la información más difícil de mantener actualizada & Diseñar el modelo de reservas con estado y monto desde el inicio, y registrar seña y saldo con Mercado Pago en modo de prueba & Implementado \\
         Entrevista, decoración & Sería útil un plano a escala del salón para planificar la ambientación & Evaluar para una futura versión del marketplace (no forma parte del alcance actual) & Pendiente \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-\section{Resultados honestos: lo que funcionó y lo que no}
+\section{Resultados obtenidos y limitaciones}
 
 Funcionaron según lo previsto: la separación de datos por tenant (ningún
 usuario accedió a datos ajenos en las pruebas), el filtro de
@@ -181,6 +169,4 @@ No salió como se esperaba, o todavía no se puso a prueba:
     \item Las pruebas de rendimiento (RNF-03) no se hicieron porque
           todavía no hay un entorno de producción para medir con carga
           real.
-    \item La entrevista a un responsable de catering, prevista en la
-          Fase~2 de la metodología, sigue pendiente.
 \end{itemize}

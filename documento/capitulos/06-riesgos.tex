@@ -5,59 +5,42 @@
 
 \chapter{Análisis de riesgos}\label{cap:riesgos}
 
-\begin{guia}[Guía de la cátedra: qué espera ver en este capítulo]
-Formato obligatorio de cada riesgo: \textbf{``Debido a [causa], podría
-ocurrir [evento], lo que provocaría [efecto]''}. Sin causa es un miedo,
-no un riesgo.
-\begin{enumerate}
-    \item \textbf{Tabla de riesgos} con ID, descripción causa--evento--efecto,
-          naturaleza, etapa, probabilidad (1--5), impacto (1--5),
-          \gls{exposicion} (1--25), respuesta, responsable y contingencia;
-          ordenada por exposición descendente. Con los 6 a 8 primeros bien
-          tratados alcanza; el resto se monitorea.
-    \item Al menos un riesgo de \textbf{cada naturaleza} (alcance, técnicos,
-          recursos, terceros, datos y cumplimiento) y de \textbf{cada etapa}
-          (antes de arrancar, durante, pasaje a producción, operación).
-    \item Al menos un riesgo \textbf{externo} (``si no tienen ninguno, no
-          miraron para afuera'') y al menos uno con respuesta
-          \textbf{aceptar} bien justificado (``aceptar se escribe; ignorar
-          se paga'').
-    \item \textbf{Supuestos y restricciones} separados de los riesgos. Cada
-          supuesto que falla se convierte en riesgo.
-    \item Que sean propios: ``un riesgo copiado de internet se nota a tres
-          metros''.
-\end{enumerate}
-Los siete que matan proyectos: alcance que nunca cierra (el número uno
-de la materia), pérdida de la fuente de datos, equipo que se desarma,
-tecnología que no da, inviabilidad de costo, barrera legal o ética,
-nadie a cargo. Y la pregunta de jurado: ¿quién lo mantiene cuando
-ustedes se reciben? Marco de referencia: \citet{pmi2021}.
-\end{guia}
-
 Este capítulo identifica los riesgos propios del \emph{negocio y del
-sistema} una vez en marcha --- distintos de los riesgos de llevar
-adelante el proyecto de tesis en sí, ya cubiertos en la
-sección de riesgos del capítulo~\ref{cap:metodologia}. Cada riesgo sigue
-el formato causa--evento--efecto y se clasifica por naturaleza y por
-etapa del ciclo de vida (antes de arrancar, durante el desarrollo,
-pasaje a producción y operación).
+sistema} una vez en marcha. Quedan fuera los riesgos de llevar adelante
+la tesis en sí (plazos, disponibilidad del autor), porque corresponden
+al proceso de elaboración del trabajo y no al producto. Cada riesgo
+sigue el formato causa--evento--efecto y se clasifica por naturaleza y
+por etapa del ciclo de vida (pasaje a producción y operación).
 
 \section{Supuestos y restricciones}
 
 \begin{description}
-    \item[Supuesto 1] Las encuestas y entrevistas de la Fase~2 terminan de
-          relevarse antes de congelar el alcance de la entrega final. Si
-          este supuesto falla, se convierte en el riesgo~R-01.
-    \item[Supuesto 2] El desarrollador (el propio tesista) continúa
-          disponible sin interrupciones hasta el 17/11/2026. Si falla,
-          da lugar al riesgo de recursos ya documentado en el
-          capítulo~\ref{cap:metodologia}.
+    \item[Supuesto 1] El interés declarado por los encuestados (el
+          91,1\,\% usaría la plataforma, seguro o probablemente) se
+          traduce en una adopción real al ritmo del escenario base del
+          análisis económico. Si este supuesto falla, se convierte en el
+          riesgo~R-01.
+    \item[Supuesto 2] Alguien (el autor u otra persona) continúa a cargo
+          del sistema después de la defensa. Si falla, se convierte en
+          el riesgo~R-04.
     \item[Restricción 1] El proyecto debe ejecutarse con presupuesto
           prácticamente nulo: cualquier respuesta a un riesgo que
           implique gasto debe usar planes gratuitos o de muy bajo costo.
-    \item[Restricción 2] La fecha de entrega final (17/11/2026) es fija y
-          no la define el autor.
+    \item[Restricción 2] El sistema se evaluó con los datos de un único
+          caso real (Rodríguez Catering) y sin tráfico de usuarios
+          reales, por lo que no hay historial de uso para calibrar las
+          probabilidades que siguen.
 \end{description}
+
+\section{Criterio de evaluación}
+
+Cada riesgo se evalúa por su probabilidad (de 1, muy improbable, a 5,
+muy probable) y por su impacto (de 1, insignificante, a 5, severo), con
+la escala de la cátedra. La exposición es el producto de ambos valores y
+se clasifica como alta (12 o más), media (de 6 a 10) o baja (5 o menos).
+Como no existe historial de operación, las puntuaciones son un juicio
+fundamentado del autor y no una medición; las de impacto económico se
+apoyan en los escenarios del análisis de rentabilidad.
 
 % Matriz de exposición de la clase 11: probabilidad x impacto.
 \begin{table}[H]
@@ -78,20 +61,7 @@ pasaje a producción y operación).
     \end{tabular}
 \end{table}
 
-\begin{ejemplo}[Ejemplo de la cátedra: así no / así sí]
-\textbf{Así no:} ``Puede fallar el servidor.'' No hay causa, no hay
-consecuencia y no se puede hacer nada con esa frase.
-
-\textbf{Así sí:} ``Debido a que el prototipo corre en una única VM sin
-réplica, podría caerse durante la demo, lo que impediría mostrar el
-resultado al jurado.''
-
-Cuatro respuestas posibles: \textbf{evitar} (sacar la causa: cambiar el
-alcance), \textbf{mitigar} (bajar probabilidad o impacto: repositorio con
-backup, ambiente de respaldo), \textbf{transferir} (que lo asuma un
-tercero: hosting administrado, librería probada) y \textbf{aceptar}
-(convivir con él, documentado, con responsable y contingencia).
-\end{ejemplo}
+\section{Matriz de riesgos}
 
 Todos los riesgos siguientes tienen como responsable al autor del
 proyecto, por tratarse de un equipo de una sola persona.
@@ -112,12 +82,27 @@ proyecto, por tratarse de un equipo de una sola persona.
     \endhead
     \bottomrule
     \endfoot
-    R-01 & Debido a que las encuestas y entrevistas de la Fase~2 todavía están en curso, podría ocurrir que se sigan sumando funcionalidades (pagos, app móvil) hasta último momento, lo que provocaría que el alcance no cierre antes del 17/11. & Alcance & Durante & 4 & 5 & \riesgoAlto{20} & Mitigar: congelar el alcance en el hito ``sistema congelado'' (3/11) y dejar pagos y despliegue documentados como trabajo futuro & Recortar a los \gls{rf} ya implementados y priorizar el documento integrado \\
-    R-02 & Debido a que el sistema corre hoy solo en el entorno local de desarrollo y todavía no se eligió proveedor de hosting, podría ocurrir que el despliegue se resuelva a último momento, lo que provocaría fallas durante la demo de la defensa. & Técnico & Pasaje a producción & 3 & 5 & \riesgoAlto{15} & Mitigar: elegir hosting antes del 3/11, ambiente de respaldo y video de la demo grabado con antelación & Mostrar el video y el ambiente local si falla la red del aula \\
-    R-03 & Debido a que la plataforma fue desarrollada por una sola persona sin documentación pensada para un tercero, podría ocurrir que nadie quede a cargo del mantenimiento una vez recibido el tesista, lo que provocaría que el sistema quede sin soporte ni actualizaciones de seguridad. & Recursos & Operación & 3 & 4 & \riesgoAlto{12} & Mitigar: documentar arquitectura (capítulo~\ref{cap:marco-tecnologico}) y código pensando en un traspaso, y decidir explícitamente si el proyecto continúa tras la defensa & Publicar el repositorio con licencia abierta para que un tercero pueda continuarlo \\
-    R-04 & Debido a que todavía no se eligió la pasarela de pagos (Mercado Pago o Stripe test mode), podría ocurrir que el marketplace llegue a la entrega final sin cobros integrados, lo que provocaría que las contrataciones deban confirmarse y cobrarse manualmente fuera de la plataforma. & Terceros & Antes de arrancar & 5 & 2 & \riesgoMedio{10} & Aceptar: para el piloto en Buenos Aires y el Gran Buenos Aires, confirmar y cobrar manualmente --- como ya se hace hoy--- no bloquea la validación del marketplace, la recomendación ni el Gemelo Digital & Documentar el flujo manual en el README y evaluar la pasarela recién con usuarios reales \\
-    R-05 & Debido a que la plataforma administrará datos personales de clientes, salones y proveedores, podría ocurrir un incumplimiento de la Ley 25.326 de Protección de Datos Personales, lo que provocaría sanciones o pérdida de confianza de los usuarios. & Datos y cumplimiento & Operación & 2 & 5 & \riesgoMedio{10} & Mitigar: política de privacidad explícita, credenciales cifradas (ya implementado con Sanctum) y acceso a datos limitado según el rol & Suspender la funcionalidad afectada hasta corregir el incumplimiento \\
-    R-06 & Debido a que el motor de recomendación se basa en reglas ponderadas y todavía no hay historial de uso real para entrenar un modelo, podría ocurrir que las primeras recomendaciones sean poco precisas, lo que provocaría baja confianza de los primeros usuarios en esa funcionalidad. & Técnico & Durante & 3 & 3 & \riesgoMedio{9} & Mitigar: comunicar que es una primera versión y ajustar los pesos de las reglas con el feedback de los primeros pilotos & Volver temporalmente a un orden simple (por reseñas) si el puntaje confunde más de lo que ayuda \\
-    R-07 & Debido a que el hosting se cotiza en dólares y los ingresos de suscripción se cobran en un contexto de alta inflación en pesos (capítulo~\ref{cap:economica}), podría ocurrir que el margen se reduzca más rápido de lo proyectado, lo que provocaría la necesidad de ajustar precios antes de lo previsto. & Recursos (externo) & Operación & 3 & 2 & \riesgoMedio{6} & Transferir/mitigar: revisar trimestralmente el tipo de cambio y ajustar el precio de suscripción según el modelo del capítulo~\ref{cap:economica} & Subir el precio de suscripción anticipadamente si el margen se erosiona \\
+    R-01 & Debido a que un marketplace de dos lados necesita que se sumen a la vez salones, proveedores y clientes, y a que todavía no hay usuarios reales, podría ocurrir que la adopción quede por debajo de la prevista (15 salones y proveedores y 20 contrataciones en el primer año), lo que provocaría ingresos menores a los proyectados y un repago más lento. & Mercado & Operación & 4 & 4 & \riesgoAlto{16} & Mitigar: lanzar un piloto acotado a Buenos Aires y el Gran Buenos Aires, partir de la red de Rodríguez Catering, mantener el precio de lanzamiento reducido y medir la adopción desde el primer mes & Operar con la escala del escenario pesimista (60\,\% de la adopción base), que sigue dando un \gls{van} positivo, y postergar los gastos de marketing \\
+    R-02 & Debido a que el sistema administra datos personales de clientes, salones y proveedores de distintos negocios en una misma plataforma, y a que no se realizó una auditoría de seguridad, podría ocurrir un acceso indebido a datos de otro negocio o un incumplimiento de la Ley 25.326 de Protección de Datos Personales, lo que provocaría sanciones y pérdida de confianza de los usuarios. & Datos y cumplimiento & Operación & 3 & 5 & \riesgoAlto{15} & Mitigar: política de privacidad explícita, credenciales cifradas (ya implementado con Sanctum), acceso a datos limitado según el rol y revisión de seguridad antes de abrir la plataforma a usuarios reales & Suspender la funcionalidad afectada y notificar a los usuarios alcanzados hasta corregir el problema \\
+    R-03 & Debido a que el sistema no fue sometido a pruebas de carga ni se monitorea en un entorno público, podría ocurrir que se degrade o se caiga con más usuarios simultáneos o ante una falla del proveedor de hosting, lo que provocaría que clientes, salones y proveedores no puedan operar ni reservar y se pierda confianza en la plataforma. & Técnico & Pasaje a producción & 3 & 4 & \riesgoAlto{12} & Mitigar: realizar pruebas de carga básicas antes del piloto, empezar con una escala acotada y programar copias de seguridad periódicas de la base de datos & Restaurar desde la última copia, comunicar la interrupción y atender las reservas de forma manual, como se hace hoy \\
+    R-04 & Debido a que la plataforma fue desarrollada por una sola persona sin documentación pensada para un tercero, podría ocurrir que nadie quede a cargo del mantenimiento una vez recibido el tesista, lo que provocaría que el sistema quede sin soporte ni actualizaciones de seguridad. & Recursos & Operación & 3 & 4 & \riesgoAlto{12} & Mitigar: documentar la arquitectura y el código pensando en un traspaso, y decidir explícitamente si el proyecto continúa tras la defensa & Publicar el repositorio con licencia abierta para que un tercero pueda continuarlo \\
+    R-05 & Debido a que el motor de recomendación se basa en reglas ponderadas y todavía no hay historial de uso real para entrenar un modelo, podría ocurrir que las primeras recomendaciones sean poco precisas, lo que provocaría baja confianza de los primeros usuarios en esa funcionalidad. & Técnico & Operación & 3 & 3 & \riesgoMedio{9} & Mitigar: comunicar que es una primera versión y ajustar los pesos de las reglas con el feedback de los primeros pilotos & Volver temporalmente a un orden simple (por reseñas) si el puntaje confunde más de lo que ayuda \\
+    R-06 & Debido a que los pagos con Mercado Pago solo se probaron en modo de prueba (sandbox), podría ocurrir que al pasar a cobros reales aparezcan fallas (credenciales, confirmación del pago, conciliación) o cobros incorrectos, lo que provocaría pérdida de ingresos por comisión y desconfianza de los usuarios. & Terceros & Pasaje a producción & 3 & 3 & \riesgoMedio{9} & Mitigar: completar las pruebas del flujo de seña y saldo con cuentas de prueba, habilitar los cobros reales primero en un piloto acotado y mantener las reglas ya implementadas (el monto lo decide el servidor y el estado del pago se confirma siempre con la pasarela) & Desactivar los cobros en línea y cobrar de forma manual, como se hace hoy, hasta corregir el problema \\
+    R-07 & Debido a que el hosting se cotiza en dólares y los ingresos de suscripción se cobran en un contexto de alta inflación en pesos, podría ocurrir que el margen se reduzca más rápido de lo proyectado, lo que provocaría la necesidad de ajustar precios antes de lo previsto. & Económico (externo) & Operación & 3 & 2 & \riesgoMedio{6} & Mitigar: revisar trimestralmente el tipo de cambio y ajustar el precio de suscripción según el modelo financiero proyectado & Subir el precio de suscripción anticipadamente si el margen se erosiona \\
+    R-08 & Debido a que existen marketplaces de eventos y plataformas de gestión ya instalados, podría ocurrir que alguno incorpore recomendación y simulación, lo que provocaría que la propuesta pierda su diferencia y cueste más captar salones y proveedores. & Mercado & Operación & 2 & 3 & \riesgoMedio{6} & Mitigar: diferenciarse por la integración de marketplace, gestión interna y funciones inteligentes en un solo lugar, y relevar periódicamente a los competidores & Reforzar el nicho de salones y proveedores pequeños, que las plataformas grandes atienden menos \\
 \end{xltabular}
 \normalsize
+
+\section{Lectura de la matriz}
+
+Cuatro riesgos tienen exposición alta (R-01 a R-04) y los otros cuatro,
+media; ninguno es bajo. Los dos primeros concentran lo que más puede
+afectar al negocio: que los usuarios no lleguen en el número previsto y
+que los datos de un negocio queden expuestos a otro. El primero se
+atenúa con el propio análisis económico, que muestra que el proyecto
+sigue siendo viable con solo el 60\,\% de la adopción prevista; el
+segundo depende de medidas que todavía deben completarse antes de abrir
+la plataforma a usuarios reales. Los riesgos R-03 y R-04 son
+consecuencia directa de que el sistema se construyó como prototipo
+sobre un caso real, sin pruebas de carga ni documentación para un
+tercero.
